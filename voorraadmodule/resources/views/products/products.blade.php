@@ -4,8 +4,16 @@
 <div class="producten-pagina">
     <h1>PRODUCTEN PAGINA</h1>
     <a href="/producten/toevoegen" class="add-button">
-        <p>Product toevoegen</p>
+    <p>Product toevoegen</p>
     </a>
+
+    <!-- Adding a bit of space -->
+    <div style="margin-bottom: 20px;"></div>
+
+    <a href="/producten/archiveren" class="add-button">
+        <p> Archiveer product</p>
+    </a>
+
     <div class="bg-white pb-4 px-4 rounded-md w-full" style="width:1000px; margin-left:auto; margin-right:auto; margin-top:50px;">
         <div class="flex justify-between w-full pt-6 ">
           <p class="ml-3"> Users Table</p>
@@ -48,7 +56,15 @@
               <td class="px-4 py-4">{{$p->name}}</td>
               <td class="px-4 py-4">{{$p->description}}</td>
               <td class="px-4 py-4">{{$p->category}}</td>
-            </tr>
+              <td class="px-4 py-4">
+                <a href="{{ route('products.archive', $p->id) }}" class="small-button"> 
+                  <img id="logo" src="{{url('/images/icons8-delete-button-64.png')}}">
+                </a>
+              </div>
+              </a>
+            </td>
+          </tr>
+
             @endforeach
           </tbody>
         </table>

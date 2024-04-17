@@ -5,7 +5,7 @@
     <h1>PRODUCT ARCHIVEREN</h1>
     <form class="default-form" action="{{ route('products.archive') }}" method="post">
         @csrf
-        <label>Serial Nummer</label>
+        <label>serienummer</label>
         <input type="text" name="serialnumber" value="">
         
         <input class="submit" type="submit" value="Archiveren"/>

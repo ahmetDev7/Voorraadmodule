@@ -6,6 +6,14 @@
   <a href="/producten/toevoegen" class="add-button">
     <p>Product toevoegen</p>
   </a>
+
+  <!-- Adding a bit of space -->
+  <div style="margin-bottom: 20px;"></div>
+
+  <a href="/producten/archiveren" class="add-button">
+      <p> Archiveer product</p>
+  </a>
+
   <div class="bg-white pb-4 px-4 rounded-md w-full" style="width:1000px; margin-left:auto; margin-right:auto; margin-top:50px;">
     <div class="flex justify-between w-full pt-6 ">
       <p class="ml-3"> Users Table</p>

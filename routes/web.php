@@ -10,8 +10,8 @@ Route::get('/', function () {
 Route::get('/producten/', [ProductController::class, 'index'])->name('products.index');
 Route::get('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'index'])->name('products.index');
 Route::post('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'add'])->name('products.add');
-
 Route::get('/producten/archiveren', [App\Http\Controllers\ArchiveProductController::class, 'index'])->name('products.index');
 Route::post('/producten/archiveren', [App\Http\Controllers\ArchiveProductController::class, 'archive'])->name('products.archive');
-
+Route::get('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductController::class, 'edit'])->name('products.edit');
+Route::put('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductController::class, 'update'])->name('products.update');
 

@@ -20,7 +20,7 @@ class UpdateProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        $product->serialnumber = $request->input('serialnumber');
+        $product->productnummer = $request->input('productnummer');
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->category = $request->input('category');

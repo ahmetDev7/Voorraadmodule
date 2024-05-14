@@ -10,7 +10,7 @@ class ArchivedProduct extends Model
     use HasFactory;
 
     protected $fillable = [
-        'serialnumber',
+        'productnummer',
         'name',
         'description',
         'category',

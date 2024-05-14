@@ -23,7 +23,7 @@ class ProductController extends Controller
         }
 
         ArchivedProduct::create([
-            'serialnumber' => $product->productnummer,
+            'productnummer' => $product->productnummer,
             'name' => $product->name,
             'description' => $product->description,
             'category' => $product->category,

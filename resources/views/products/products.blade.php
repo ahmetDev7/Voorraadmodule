@@ -10,7 +10,7 @@
 
   <!-- Adding a bit of space -->
   <div style="margin-bottom: 20px;"></div>
-  \
+
 
   <div class="bg-white pb-4 px-4 rounded-md w-full"
     style="width:1000px; margin-left:auto; margin-right:auto; margin-top:50px;">

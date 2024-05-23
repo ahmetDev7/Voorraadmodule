@@ -31,7 +31,7 @@
                     <a href="/producten">Producten</a>
                 </li>
                 <li>
-                    <a>Werknemers</a>
+                    <a href="/Werknemers">Werknemers</a>
                 </li>
                 <li>
                     <a>Opslaglocaties</a>

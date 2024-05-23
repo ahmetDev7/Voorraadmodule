@@ -919,8 +919,11 @@
             <li>
                 <a href="/Werknemers">Werknemers</a>
             </li>
-            <li>
-                <a>Opslaglocaties</a>
+            <li class="dropdown">
+                <a href="/opslaglocaties" class="dropdownn">Opslaglocaties <i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="/producten-zoeken-bij-opslag">product zoeken bij opslag</a>
+                </div>
             </li>
             <li>
                 <a>Mijn inventaris</a>

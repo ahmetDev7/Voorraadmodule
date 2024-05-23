@@ -35,7 +35,7 @@ Route::put('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductContr
 
 Route::get('/werknemer/{id}/products', [App\Http\Controllers\WerknemerController::class, 'showProducts'])->name('werknemer.products');
 
-Route::get('/opslaglocaties/', [WarehouseController::class, 'index'])->name('warehouses.index');
+Route::get('/opslaglocaties/', [App\Http\Controllers\WarehouseController::class, 'index'])->name('warehouses.index');
 Route::get('/opslaglocaties/toevoegen', [App\Http\Controllers\AddWarehousesController::class, 'index'])->name('warehouses.index');
 Route::post('/opslaglocaties/toevoegen', [App\Http\Controllers\AddWarehousesController::class, 'add'])->name('warehouses.add');
 Route::get('/opslaglocaties/{id}', [App\Http\Controllers\WarehouseController::class, 'show'])->name('warehouses.show');
@@ -43,4 +43,4 @@ Route::get('/product-toevoegen-opslag/{id}', [App\Http\Controllers\ItemQuantityI
 Route::post('/product-toevoegen-opslag/{id}', [App\Http\Controllers\ItemQuantityInWarehousesController::class, 'assignProductToWarehouse'])->name('itemquantityinwarehouses.assignProductToWarehouse');
 
 
-Route::get('/producten-zoeken-bij-opslag/', [ProductenZoekenBijOpslaglocatiesController::class, 'search'])->name('ItemQuantityInWarehouses.search');
+Route::get('/producten-zoeken-bij-opslag/', [App\Http\Controllers\ProductenZoekenBijOpslaglocatiesController::class, 'search'])->name('ItemQuantityInWarehouses.search');

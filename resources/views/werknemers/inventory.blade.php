@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="producten-pagina">
-    <h1>{{ $werknemer->name }}'s Products</h1>
+    <h1>De producten van {{ $werknemer->name }}.</h1>
 
 
     <!-- Adding a bit of space -->

@@ -19,15 +19,15 @@ class ArchiveProductController extends Controller
 
         // Validate the request
         $request->validate([
-            'serialnumber' => 'required|exists:products,serialnumber',
+            'productnummer' => 'required|exists:products,productnummer',
         ]);
 
         // Retrieve the product by serialnumber
-        $product = Product::where('serialnumber', $request->input('serialnumber'))->firstOrFail();
+        $product = Product::where('productnummer', $request->input('productnummer'))->firstOrFail();
 
         // Create a new archived product record
         ArchivedProduct::create([
-            'serialnumber' => $product->serialnumber,
+            'serialnumber' => $product->productnummer,
             'name' => $product->name,
             'description' => $product->description,
             'category' => $product->category,

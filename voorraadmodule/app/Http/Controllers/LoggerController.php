@@ -10,7 +10,7 @@ class LoggerController extends Controller
 {
     public function index()
     {
-        Logger::log("Product 1 is verplaatst naar opslaglocatie A");
+        // Logger::log("Product 1 is verplaatst naar opslaglocatie A");
         $logs = Log::all();
         return view('logger.logger', compact('logs'));
     }

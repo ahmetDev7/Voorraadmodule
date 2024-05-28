@@ -20,7 +20,8 @@ class ProductenZoekenBijOpslaglocatiesController extends Controller
             $warehouses = ItemQuantityInWarehouses::join('warehouses', 'item_quantity_in_warehouses.warehouse_id', '=', 'warehouses.id')
                 ->join('products', 'item_quantity_in_warehouses.product_id', '=', 'products.id')
                 ->select('item_quantity_in_warehouses.*', 'warehouses.*', 'products.id as product_id')
-                ->where('item_quantity_in_warehouses.product_id', $search)
+                ->Where('products.productnummer', 'like', $search)
+                ->orWhere('products.name', 'like', $search)
                 ->get();
             return view('ItemQuantityInWarehouseses.productenZoekenVoorOpslaglocaties', compact('warehouses', 'search'));
         }

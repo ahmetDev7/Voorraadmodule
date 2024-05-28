@@ -6,8 +6,8 @@
     <form class="default-form" action="{{ route('itemquantityinwarehouses.assignProductToWarehouse', ['id' => $product->id]) }}" method="post">
         @csrf
 
-        <label>id</label>
-        <input type="text" name="id" value="{{ $product->id }}" readonly>
+        <label>Productnummer</label>
+        <input type="text" name="id" value="{{ $product->productnummer }}" readonly>
         <label>Hoeveelheid</label>
         <input type="text" name="quantity" value="">
         <label>Opslaglocatie ID</label>

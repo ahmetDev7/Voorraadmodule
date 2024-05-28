@@ -61,16 +61,14 @@
           <td class="px-4 py-4">{{$p->category}}</td>
           <td class="px-4 py-4">
           <a href="{{ route('products.edit', $p->id) }}" class="small-button">
-            <!-- Add the small-button class to the anchor tag -->
             <img id="logo" src="{{url('/images/edit-icon.png')}}">
-
           </a>
           <a href="{{ route('products.archive', $p->id) }}" class="small-button"
             onclick="confirmationArchive(event)">
             <img id="logo" src="{{url('/images/Archive-Button.png')}}">
-
-
           </a>
+          <a href="{{ route('itemquantityinwarehouses.showAssignForm', $p->id) }}" class="small-button">
+          <img id="logo" src="{{url('/images/warehouse2.png')}}">
       </div>
       </a>
       </td>

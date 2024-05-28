@@ -49,33 +49,37 @@
             <th class="px-4 py-2 " style="background-color:#f8f8f8">Naam</th>
             <th class="px-4 py-2 " style="background-color:#f8f8f8">Beschrijving</th>
             <th class="px-4 py-2 " style="background-color:#f8f8f8">Categorie</th>
+            <th class="px-4 py-2 " style="background-color:#f8f8f8">Hoeveelheid</th>
             <th class="px-4 py-2 " style="background-color:#f8f8f8">Acties</th>
           </tr>
         </thead>
         <tbody class="text-sm font-normal text-gray-700">
           @foreach($products as $p)
-        <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
-          <td class="px-4 py-4">{{$p->productnummer}}</td>
-          <td class="px-4 py-4">{{$p->name}}</td>
-          <td class="px-4 py-4">{{$p->description}}</td>
-          <td class="px-4 py-4">{{$p->category}}</td>
-          <td class="px-4 py-4">
-          <a href="{{ route('products.edit', $p->id) }}" class="small-button">
-            <!-- Add the small-button class to the anchor tag -->
-            <img id="logo" src="{{url('/images/edit-icon.png')}}">
-
-          </a>
-          <a href="{{ route('products.archive', $p->id) }}" class="small-button"
-            onclick="confirmationArchive(event)">
-            <img id="logo" src="{{url('/images/Archive-Button.png')}}">
-
-
-          </a>
-      </div>
-      </a>
-      </td>
-      </tr>
-    @endforeach
+            <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
+              <td class="px-4 py-4">{{$p->productnummer}}</td>
+              <td class="px-4 py-4">{{$p->name}}</td>
+              <td class="px-4 py-4">{{$p->description}}</td>
+              <td class="px-4 py-4">{{$p->category}}</td>
+              @php
+                $totalquantity = 0;
+                foreach($p as $pl) {
+                  $totalquantity += $p->pivot ? $p->pivot->quantity : 0;
+                }
+              @endphp
+              <td class="px-4 py-4">{{$totalquantity}}</td>
+              <td class="px-4 py-4">
+                <a href="{{ route('products.edit', $p->id) }}" class="small-button">
+                  <img id="logo" src="{{url('/images/edit-icon.png')}}">
+                </a>
+                <a href="{{ route('products.archive', $p->id) }}" class="small-button" onclick="confirmationArchive(event)">
+                  <img id="logo" src="{{url('/images/Archive-Button.png')}}">
+                </a>
+                <a href="{{ route('itemquantityinwarehouses.showAssignForm', $p->id) }}" class="small-button">
+                  <img id="logo" src="{{url('/images/warehouse2.png')}}">
+                </a>
+              </td>
+            </tr>
+          @endforeach
     </tbody>
     </table>
   </div>

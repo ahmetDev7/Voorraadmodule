@@ -9,10 +9,11 @@ use App\Models\ArchivedProduct;
 
 class ProductController extends Controller
 {
+    
     public function index()
     {
-        $products = Product::all();
-        return view('products.products', compact('products'));
+        $products = Product::with('warehouses')->get();
+        return view('products.products', compact('warehouse', 'products'));
     }
     public function archive($id)
     {

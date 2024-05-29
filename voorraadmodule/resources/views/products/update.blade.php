@@ -26,6 +26,20 @@
         @if ($errors->has('category'))
         <p style="color:#FF0000;">{{ $errors->first('category') }}</p>
         @endif
+
+        @foreach ($product->warehouses as $warehouse)
+        <div>
+            <br>
+            <label>{{ $warehouse->name }}</label>
+            <input type="hidden" name="itemQuantities[{{ $warehouse->id }}][warehouse_id]" value="{{ $warehouse->id }}">
+            <input type="text" name="itemQuantities[{{ $warehouse->id }}][quantity]" value="{{ $warehouse->pivot->quantity }}">
+            @if ($errors->has("itemQuantities.{$warehouse->id}.quantity"))
+            <p style="color:#FF0000;">{{ $errors->first("itemQuantities.{$warehouse->id}.quantity") }}</p>
+            @endif
+            <input type="submit" name="deleteWarehouse[{{ $warehouse->id }}]" class="submit delete-button" value="verwijderen uit opslag" />
+        </div>
+        @endforeach
+
         <input class="submit" type="submit" value="Aanpassen" />
         @if(session()->has('success'))
         <div class="alert alert-success">

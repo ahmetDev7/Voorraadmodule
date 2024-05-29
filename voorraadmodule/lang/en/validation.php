@@ -103,7 +103,7 @@ return [
     'min' => [
         'array' => 'The :attribute field must have at least :min items.',
         'file' => 'De :attribute veld must be at least :min kilobytes.',
-        'numeric' => 'De :attribute veld moet minimaal :min zijn.',
+        'numeric' => 'Dit veld moet minimaal :min zijn.',
         'string' => ':attribute moet ten minste :min karakters zijn.',
     ],
     'min_digits' => 'The :attribute field must have at least :min digits.',

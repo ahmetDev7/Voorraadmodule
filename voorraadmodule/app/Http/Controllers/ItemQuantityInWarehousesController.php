@@ -20,22 +20,28 @@ class ItemQuantityInWarehousesController extends Controller
     public function assignProductToWarehouse(Request $request)
     {
         $request->validate([
-            'quantity' => 'required',
+            'quantity' => 'required|numeric|min:1|regex:/^[0-9]+$/',
             'warehouse_id' => 'required|exists:warehouses,id',
+            'product_id' => 'required|exists:products,id',
+            [
+                'quantity.regex' => __('custom.quantity.regex'),
+            ]
         ]);
 
-        $existingItem = ItemQuantityInWarehouses::where('product_id', $request->id)
+        $existingItem = ItemQuantityInWarehouses::where('product_id', $request->product_id)
             ->where('warehouse_id', $request->warehouse_id)
             ->first();
 
         if ($existingItem) {
-            return redirect()->back()->with('error', 'Product is already associated with this warehouse.');
+            return redirect()->back()->with('error', 'Product is al in deze opslaglocatie.');
         }
+
         $itemQuantityInWarehouse = new ItemQuantityInWarehouses();
-        $itemQuantityInWarehouse->product_id = $request->id;
+        $itemQuantityInWarehouse->product_id = $request->product_id;
         $itemQuantityInWarehouse->warehouse_id = $request->warehouse_id;
         $itemQuantityInWarehouse->quantity = $request->quantity;
         $itemQuantityInWarehouse->save();
+
         return redirect()->back()->with('success', 'Product is succesvol aan een opslag toegevoegd.');
     }
 }

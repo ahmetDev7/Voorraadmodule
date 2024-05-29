@@ -27,10 +27,9 @@
     </div>
     <div class="w-full flex justify-end px-2 mt-2">
       <div class="w-full sm:w-64 inline-block relative ">
-        <input type="" name=""
-          class="leading-snug border border-gray-300 block w-full appearance-none bg-gray-100 text-sm text-gray-600 py-1 px-4 pl-8 rounded-lg"
-          placeholder="Zoeken" />
-
+      <form action="{{ route('products.search') }}" method="GET">
+        <input type="search" name="search" value="{{ request('search') }}" class="leading-snug border border-gray-300 block w-full appearance-none bg-gray-100 text-sm text-gray-600 py-1 px-4 pl-8 rounded-lg" placeholder="Zoeken" />
+      </form>
         <div class="pointer-events-none absolute pl-3 inset-y-0 left-0 flex items-center px-2 text-gray-300">
 
           <svg class="fill-current h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.999 511.999">
@@ -54,19 +53,13 @@
           </tr>
         </thead>
         <tbody class="text-sm font-normal text-gray-700">
-          @foreach($products as $p)
+        @forelse($products as $p)
             <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
               <td class="px-4 py-4">{{$p->productnummer}}</td>
               <td class="px-4 py-4">{{$p->name}}</td>
               <td class="px-4 py-4">{{$p->description}}</td>
               <td class="px-4 py-4">{{$p->category}}</td>
-              @php
-                $totalquantity = 0;
-                foreach($p as $pl) {
-                  $totalquantity += $p->pivot ? $p->pivot->quantity : 0;
-                }
-              @endphp
-              <td class="px-4 py-4">{{$totalquantity}}</td>
+              <td class="px-4 py-4">{{$p->total_quantity}}</td>
               <td class="px-4 py-4">
                 <a href="{{ route('products.edit', $p->id) }}" class="small-button">
                   <img id="logo" src="{{url('/images/edit-icon.png')}}">
@@ -77,9 +70,16 @@
                 <a href="{{ route('itemquantityinwarehouses.showAssignForm', $p->id) }}" class="small-button">
                   <img id="logo" src="{{url('/images/warehouse2.png')}}">
                 </a>
+                <a href="{{ route('products.show', $p->id) }}" class="small-button-2"> <!-- Add the small-button class to the anchor tag -->
+                  <img id="logo" src="{{url('/images/info-icon.png')}}">
+                </a>
               </td>
             </tr>
-          @endforeach
+            @empty
+            <tr>
+                <td colspan="8" class="px-4 py-4 list-group-item-danger">Product niet in een opslag.</td>
+            </tr>
+        @endforelse
     </tbody>
     </table>
   </div>

@@ -16,8 +16,6 @@ return new class extends Migration {
             $table->string('name');
             $table->string('description');
             $table->string('category');
-            $table->foreignId('warehouse_id');
-            $table->string('quantity');
             $table->timestamps();
         });
     }

@@ -7,7 +7,7 @@
         @csrf
         @method('PUT')
         <label>Productnummer</label>
-        <input type="text" name="serialnumber" value="{{ $product->serialnumber }}">
+        <input type="text" name="productnummer" value="{{ $product->productnummer }}">
         @if ($errors->has('serialnumber'))
         <p style="color:#FF0000;">{{ $errors->first('serialnumber') }}</p>
         @endif

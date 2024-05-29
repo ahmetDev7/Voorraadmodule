@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call(WerknemerProductSeeder::class);
-
+        $this->call(Productseeder::class);
+        $this->call(WarehouseSeeder::class);
     }
 }

@@ -22,20 +22,34 @@ class AddProductWerknemerController extends Controller
     {
         $validatedData = $request->validate([
             'werknemer_id' => 'required|exists:werknemers,id',
-            'product_id' => 'required|exists:products,id',
+            'product' => 'required|exists:products,id',
             'quantity' => 'required|integer|min:1',
         ]);
 
-
         $werknemerID = $validatedData['werknemer_id'];
-        $productID = $validatedData['product_id'];
+        $productID = $validatedData['product'];  // This is the product ID
         $quantity = $validatedData['quantity'];
 
-        $product = Product::findOrFail($productID);
-        $product->name = 'test';
+
+        $product = Product::find($productID);
+        $werknemer = Werknemer::find($werknemerID);
 
 
-        $product->save();
+        $exists = $werknemer->products()->where('product_id', $productID)->exists(); // checkt of er een duplicate komt
+
+        if (!$exists) {
+            $werknemer->products()->attach($product->id, ['quantity' => $quantity]);
+
+        } else { // als het al bestaat word de quantity van het bestaande product plus met de nieuwe verzoek word gedaan
+            $currentQuantity = $werknemer->products()->where('product_id', $productID)->first()->pivot->quantity;
+            $newQuantity = $currentQuantity + $quantity;
+
+            $werknemer->products()->updateExistingPivot($productID, ['quantity' => $newQuantity]);
+        }
+
+
+        return redirect()->to(url('/werknemer/' . $werknemerID . '/producten'))->with('success', 'Product updated successfully!');
 
     }
+
 }

@@ -20,7 +20,7 @@ class ItemQuantityInWarehousesController extends Controller
     public function assignProductToWarehouse(Request $request)
     {
         $request->validate([
-            'quantity' => 'required|numeric|min:1|regex:/^[0-9]+$/',
+            'quantity' => 'required|numeric|min:1|regex:/^[1-9]{1}[0-9]+$/',
             'warehouse_id' => 'required|exists:warehouses,id',
             'product_id' => 'required|exists:products,id',
             [

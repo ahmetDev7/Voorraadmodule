@@ -186,7 +186,7 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',],
         'quantity' => [
-                'regex' => 'Hoeveelheid mag alleen nummers bevatten.',
+                'regex' => 'Hoeveelheid mag alleen nummers bevatten en moet beginnen met een positief cijfer.',
             ]
 
     ],

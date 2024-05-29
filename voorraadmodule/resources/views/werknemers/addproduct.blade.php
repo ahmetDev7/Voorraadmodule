@@ -3,9 +3,20 @@
 @section('content')
 
 <div class="product-form">
+    
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <h1>Select a Product voor {{ $werknemer->name }}</h1>
 
-    <form action="{{ route('submit.form') }}" method="POST">
+    <form action="{{ url('/werknemers/producten/toevoegen/' . $werknemer->id) }}" method="POST">
         @csrf
         <input type="hidden" name="werknemer_id" value="{{ $werknemer->id }}">
 

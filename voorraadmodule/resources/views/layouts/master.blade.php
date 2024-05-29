@@ -917,7 +917,7 @@
                 <a href="/producten">Producten</a>
             </li>
             <li>
-                <a href="/Werknemers">Werknemers</a>
+                <a href="/werknemers">Werknemers</a>
             </li>
             <li class="dropdown">
                 <a href="/opslaglocaties" class="dropdownn">Opslaglocaties <i class="fas fa-caret-down"></i></a>

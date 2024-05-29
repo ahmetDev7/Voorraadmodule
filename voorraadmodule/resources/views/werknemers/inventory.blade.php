@@ -5,7 +5,7 @@
 <div class="producten-pagina">
     <h1>De producten van {{ $werknemer->name }} id is ={{ $werknemer->id }}.</h1>
 
-    <a href="/products/form/{{ $werknemer->id }}" class="add-button">
+    <a href="/werknemers/producten/toevoegen/{{$werknemer->id}}" class="add-button">
         <p>Product bij {{ $werknemer->name }} plaatsen</p>
     </a>
 

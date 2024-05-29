@@ -22,16 +22,21 @@ Route::get('/', function () {
 });
 
 Route::get('/producten/', [ProductController::class, 'index'])->name('products.index');
-Route::get('/Werknemers/', [App\Http\Controllers\WerknemerController::class, 'index'])->name('werknemers.index');
+Route::get('/werknemers/', [App\Http\Controllers\WerknemerController::class, 'index'])->name('werknemers.index');
 
 Route::get('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'index'])->name('products.add');
 Route::post('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'add']);
 
 
 
+Route::get('/werknemers/producten/toevoegen/{werknemerId}', [App\Http\Controllers\AddProductWerknemerController::class, 'index']);
+Route::post('/werknemers/producten/toevoegen/{werknemerId}', [App\Http\Controllers\AddProductWerknemerController::class, 'store'])->name('submit.form');
 
-Route::get('/products/form/{werknemerId}', [ProductController::class, 'showForm']);
-Route::post('/products/submit', [ProductController::class, 'store'])->name('submit.form');
+Route::get('/werknemer/{id}/producten', [App\Http\Controllers\WerknemerController::class, 'showProducts'])->name('werknemer.products');
+
+
+
+
 
 Route::get('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductController::class, 'edit'])->name('products.edit');
 Route::put('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductController::class, 'update'])->name('products.update');
@@ -42,8 +47,6 @@ Route::get('/products/archive-reverse/{id}', [App\Http\Controllers\ArchiveProduc
 
 
 
-
-Route::get('/werknemer/{id}/products', [App\Http\Controllers\WerknemerController::class, 'showProducts'])->name('werknemer.products');
 
 Route::get('/opslaglocaties/', [App\Http\Controllers\WarehouseController::class, 'index'])->name('warehouses.index');
 Route::get('/opslaglocaties/toevoegen', [App\Http\Controllers\AddWarehousesController::class, 'index'])->name('warehouses.index');

@@ -24,11 +24,21 @@ Route::get('/', function () {
 Route::get('/producten/', [ProductController::class, 'index'])->name('products.index');
 Route::get('/Werknemers/', [App\Http\Controllers\WerknemerController::class, 'index'])->name('werknemers.index');
 
-Route::get('/products/{id}/archive', [ProductController::class, 'archive'])->name('products.archive');
-Route::get('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'index'])->name('products.add'); // Changed route name to 'products.add'
+Route::get('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'index'])->name('products.add');
 Route::post('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'add']);
+
+
+
+
+Route::get('/products/form/{werknemerId}', [ProductController::class, 'showForm']);
+Route::post('/products/submit', [ProductController::class, 'store'])->name('submit.form');
+
 Route::get('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductController::class, 'edit'])->name('products.edit');
 Route::put('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductController::class, 'update'])->name('products.update');
+
+Route::get('/products/{id}/archive', [App\Http\Controllers\ArchiveProductController::class, 'archive'])->name('products.archive');
+Route::get('/producten/archief', [App\Http\Controllers\ArchiveProductController::class, 'archief'])->name('products.unarchive');
+Route::get('/products/archive-reverse/{id}', [App\Http\Controllers\ArchiveProductController::class, 'archiveReverse'])->name('products.archiveReverse');
 
 
 

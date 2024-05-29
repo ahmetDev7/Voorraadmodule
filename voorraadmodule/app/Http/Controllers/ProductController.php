@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Werknemer;
+use Illuminate\Support\Facades\Auth;
+
+
 use App\Models\ArchivedProduct;
 
 
@@ -14,24 +18,48 @@ class ProductController extends Controller
         $products = Product::all();
         return view('products.products', compact('products'));
     }
-    public function archive($id)
+
+    public function showForm($werknemerId)
     {
-        $product = Product::find($id);
+        $werknemer = Werknemer::findOrFail($werknemerId);
 
-        if (!$product) {
-            return redirect()->back()->with('error', 'Product not found.');
-        }
+        $products = Product::all();
 
-        ArchivedProduct::create([
-            'productnummer' => $product->productnummer,
-            'name' => $product->name,
-            'description' => $product->description,
-            'category' => $product->category,
-            'warehouse_id' => $product->warehouse_id,
+        return view('products.form', compact('werknemer', 'products'));
+    }
+
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'werknemer_id' => 'required|exists:werknemers,id',
+            'product_id' => 'required|exists:products,id',
+            'quantity' => 'required|integer|min:1',
         ]);
 
-        $product->delete();
 
-        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
+        $werknemerID = $validatedData['werknemer_id'];
+        $productID = $validatedData['product_id'];
+        $quantity = $validatedData['quantity'];
+
+        $product = Product::findOrFail($productID);
+        $product->name = 'test';
+
+
+        $product->save();
+
+
+
+        return redirect()->route('some.route')->with('success', 'Product created successfully.');
+
+
+
+
+
     }
+
+
+
+
+
+
 }

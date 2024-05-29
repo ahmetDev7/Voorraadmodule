@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     // Define the relationship with Werknemer
+    protected $fillable = [
+        'productnummer',
+        'name',
+        'description',
+        'category',
+        'warehouse_id',
+    ];
     public function werknemers()
     {
         return $this->belongsToMany(Werknemer::class, 'werknemer_product')

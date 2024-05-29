@@ -5,8 +5,8 @@
 <div class="producten-pagina">
     <h1>WERKNEMERS</h1>
     <!-- <a href="/producten/toevoegen" class="add-button">
-        <p>Product toevoegen</p> -->
-    </a>
+        <p>Product toevoegen</p> >
+    </a> -->
 
     <!-- Adding a bit of space -->
     <div style="margin-bottom: 20px;"></div>

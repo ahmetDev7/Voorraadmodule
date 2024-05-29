@@ -12,6 +12,10 @@ class AddProductController extends Controller
     {
         return view('products/add');
     }
+    public function indexForEmployee()
+    {
+        return view('products/addToEmployee');
+    }
 
     public function add(Request $request)
     {
@@ -30,4 +34,6 @@ class AddProductController extends Controller
 
         return redirect()->back()->with('success', 'Product is toegevoegd aan de database!');
     }
+
+
 }

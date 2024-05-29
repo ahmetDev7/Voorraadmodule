@@ -7,6 +7,10 @@
   <a href="/producten/toevoegen" class="add-button">
     <p>Product toevoegen</p>
   </a>
+  <div style="margin-bottom: 20px;"></div>
+  <a href="/producten/archief" class="add-button">
+    <p>Archief/prullenbak</p>
+  </a>
 
   <!-- Adding a bit of space -->
   <div style="margin-bottom: 20px;"></div>
@@ -136,7 +140,7 @@
     var urlToRedirect = ev.currentTarget.getAttribute('href');
     console.log(urlToRedirect);
     swal({
-      title: "Are you sure that you want to Archive this product?",
+      title: "Weet u zeker dat u dit product wilt archiveren?",
       text: "",
       icon: "warning",
       buttons: true,

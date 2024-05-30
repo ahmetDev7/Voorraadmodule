@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="product-form">
-    
+
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -20,12 +20,27 @@
         @csrf
         <input type="hidden" name="werknemer_id" value="{{ $werknemer->id }}">
 
-        <label for="product">Select a product:</label>
+
+        <label for="warehouseSelect">Select a Warehouse to obtain a product from:</label>
+
+        <select name="WarehouseSelect" id="WarehouseSelect" style="color:#000000">
+            @foreach($warehouse as $warehouse)
+                <option style="color:#000000" value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
+            @endforeach
+        </select>
+
+
+
+        <br>
+
+        <label for="product"> Select a product:</label>
         <select name="product" id="product" style="color:#000000">
             @foreach($products as $product)
                 <option style="color:#000000" value="{{ $product->id }}">{{ $product->name }}</option>
             @endforeach
         </select>
+
+        <br>
 
         <label for="quantity">Quantity:</label>
         <input type="number" name="quantity" id="quantity" value="1" min="1" style="color:#000000">

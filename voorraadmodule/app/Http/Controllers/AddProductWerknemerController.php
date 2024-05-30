@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Werknemer;
 use App\Models\Product;
+use App\Models\Warehouse;
+use App\Models\ItemQuantityInWarehouses;
 
 class AddProductWerknemerController extends Controller
 {
@@ -14,7 +16,11 @@ class AddProductWerknemerController extends Controller
 
         $products = Product::all();
 
-        return view('werknemers.addproduct', compact('werknemer', 'products'));
+        $warehouse = Warehouse::all();
+
+        $itemInWarehouses = ItemQuantityInWarehouses::all();
+
+        return view('werknemers.addproduct', compact('werknemer', 'products', 'warehouse', 'itemInWarehouses'));
     }
 
 
@@ -24,18 +30,31 @@ class AddProductWerknemerController extends Controller
             'werknemer_id' => 'required|exists:werknemers,id',
             'product' => 'required|exists:products,id',
             'quantity' => 'required|integer|min:1',
+            'WarehouseSelect' => 'required|exists:item_quantity_in_warehouses,warehouse_id|integer|min:1'
         ]);
 
         $werknemerID = $validatedData['werknemer_id'];
         $productID = $validatedData['product'];  // This is the product ID
         $quantity = $validatedData['quantity'];
-
+        $warehouseID = $validatedData['WarehouseSelect']; // this is the ID of the warehouse
 
         $product = Product::find($productID);
         $werknemer = Werknemer::find($werknemerID);
 
+        $warehouseItem = ItemQuantityInWarehouses::where('warehouse_id', $warehouseID)->where('product_id', $productID)->first();
+        if ($warehouseItem)
+        {
+            $warehouseItem-> quantity -= $quantity;
+            $warehouseItem->save();
+        }
+        else
+        {
+            redirect()->to(url('/werknemer/' . $werknemerID . '/producten'))->with('success', 'product not in Warehouse!');
+        }
+
 
         $exists = $werknemer->products()->where('product_id', $productID)->exists(); // checkt of er een duplicate komt
+
 
         if (!$exists) {
             $werknemer->products()->attach($product->id, ['quantity' => $quantity]);

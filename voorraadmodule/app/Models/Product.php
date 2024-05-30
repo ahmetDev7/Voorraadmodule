@@ -20,4 +20,10 @@ class Product extends Model
             ->withPivot('quantity')
             ->withTimestamps();
     }
+
+    public function warehouses()
+    {
+        return $this->belongsToMany(ItemQuantityInWarehouses::class, 'id')
+            ->withPivot('quantity');
+    }
 }

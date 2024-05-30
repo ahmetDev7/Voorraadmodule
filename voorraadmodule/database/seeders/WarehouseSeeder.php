@@ -3,16 +3,18 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use app\Model\Warehouse;
+use App\Models\Warehouse;
+use App\Models\ItemQuantityInWarehouses;
 use Illuminate\Database\Seeder;
 
-class WarehouseSeeder extends Seeder
+class Warehouseseeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
+
         $warehouse1 = Warehouse::create(['name' =>'test1', 'street' => 'teststreet', 'housenumber' => '01', 'zipcode' => '1234AB', 'city' => 'testcity', 'country' => 'testcountry']);
         $warehouse2 = Warehouse::create(['name' =>'test2', 'street' => 'teststreet', 'housenumber' => '01', 'zipcode' => '1234AB', 'city' => 'testcity', 'country' => 'testcountry']);
         $warehouse3 = Warehouse::create(['name' =>'test3', 'street' => 'teststreet', 'housenumber' => '01', 'zipcode' => '1234AB', 'city' => 'testcity', 'country' => 'testcountry']);
@@ -22,5 +24,8 @@ class WarehouseSeeder extends Seeder
         $warehouse3->save();
         $warehouse4->save();
 
+
+        $iteminWarehouse1 = ItemQuantityInWarehouses::create(['product_id' => '1', 'warehouse_id' => 1, 'quantity' => 5]);
+        $iteminWarehouse1-> save();
     }
 }

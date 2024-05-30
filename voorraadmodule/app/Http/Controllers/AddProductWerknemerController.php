@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use App\Models\Werknemer;
 use App\Models\Product;
@@ -20,8 +21,28 @@ class AddProductWerknemerController extends Controller
 
         $itemInWarehouses = ItemQuantityInWarehouses::all();
 
-        return view('werknemers.addproduct', compact('werknemer', 'products', 'warehouse', 'itemInWarehouses'));
+
+        return view('werknemers.addproduct', compact('werknemer', 'products', 'warehouse'));
     }
+
+    // public function getItemoptions($warehouseID)
+    // {
+    //     $itemsinwarehouseID = ItemQuantityInWarehouses::where('warehouse_id', $warehouseID)->get(['product_id']);
+
+
+
+
+    //     $optionsFinal
+    //     foreach($itemsinwarehouseID as $itemtofind)
+    //     {
+    //         $options = Product::where('product_id', $itemsinwarehouseID)
+    //     return response() ->json($options);
+    // }
+
+    // public function getmaxamount($warehouseID, $productID)
+    // {
+
+    // }
 
 
     public function store(Request $request)
@@ -42,14 +63,14 @@ class AddProductWerknemerController extends Controller
         $werknemer = Werknemer::find($werknemerID);
 
         $warehouseItem = ItemQuantityInWarehouses::where('warehouse_id', $warehouseID)->where('product_id', $productID)->first();
-        if ($warehouseItem)
+        if ($warehouseItem && $warehouseItem->quantity >= $quantity)
         {
             $warehouseItem-> quantity -= $quantity;
             $warehouseItem->save();
         }
         else
         {
-            redirect()->to(url('/werknemer/' . $werknemerID . '/producten'))->with('success', 'product not in Warehouse!');
+            return redirect()->to(url('/werknemer/' . $werknemerID . '/producten'))->with('success', 'product not in Warehouse!');
         }
 
 

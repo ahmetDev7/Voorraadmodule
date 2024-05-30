@@ -38,7 +38,7 @@ Route::get('/products/search', [ProductController::class, 'search'])->name('prod
 
 Route::get('/werknemer/{id}/products', [App\Http\Controllers\WerknemerController::class, 'showProducts'])->name('werknemer.products');
 
-Route::get('/opslaglocaties/', [App\Http\Controllers\WarehouseController::class, 'index'])->name('warehouses.index');
+Route::get('/opslaglocaties/', [App\Http\Controllers\WarehouseController::class, 'index']);
 Route::get('/opslaglocaties/toevoegen', [App\Http\Controllers\AddWarehousesController::class, 'index'])->name('warehouses.index');
 Route::post('/opslaglocaties/toevoegen', [App\Http\Controllers\AddWarehousesController::class, 'add'])->name('warehouses.add');
 Route::get('/opslaglocaties/{id}', [App\Http\Controllers\WarehouseController::class, 'show'])->name('warehouses.show');

@@ -16,7 +16,7 @@ class WarehouseController extends Controller
     public function show($id)
     {
         $warehouse = Warehouse::findOrFail($id);
-        $products = $warehouse->products()->get();
+        $products = $warehouse->products()->withPivot('quantity')->get();
         return view('warehouses.ShowWareHouseProducts', compact('warehouse', 'products'));
     }
 

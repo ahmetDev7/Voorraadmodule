@@ -22,7 +22,9 @@ class ProductenZoekenBijOpslaglocatiesController extends Controller
                 ->select('item_quantity_in_warehouses.*', 'warehouses.*', 'products.id as product_id')
                 ->Where('products.productnummer', 'like', $search)
                 ->orWhere('products.name', 'like', $search)
+                ->orWhere('products.category', 'like', $search)
                 ->get();
+                
             return view('ItemQuantityInWarehouseses.productenZoekenVoorOpslaglocaties', compact('warehouses', 'search'));
         }
     }

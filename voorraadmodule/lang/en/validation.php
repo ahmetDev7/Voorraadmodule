@@ -102,8 +102,8 @@ return [
     'mimetypes' => 'The :attribute field must be a file of type: :values.',
     'min' => [
         'array' => 'The :attribute field must have at least :min items.',
-        'file' => 'The :attribute field must be at least :min kilobytes.',
-        'numeric' => 'The :attribute field must be at least :min.',
+        'file' => 'De :attribute veld must be at least :min kilobytes.',
+        'numeric' => 'Dit veld moet minimaal :min zijn.',
         'string' => ':attribute moet ten minste :min karakters zijn.',
     ],
     'min_digits' => 'The :attribute field must have at least :min digits.',
@@ -133,7 +133,7 @@ return [
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
     'prohibits' => 'The :attribute field prohibits :other from being present.',
     'regex' => 'Een :attribute mag alleen cijfers, letters of - bevatten en moet eindigen met een cijfer of letter.',
-    'required' => ':attribute mag niet leeg zijn.',
+    'required' => 'Deze veld mag niet leeg zijn.',
     'required_array_keys' => 'The :attribute field must contain entries for: :values.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_if_accepted' => 'The :attribute field is required when :other is accepted.',
@@ -175,16 +175,19 @@ return [
             'regex' => 'Dit is geen valide postcode.',
         ],
         'city' => [
-            'regex' => 'Stad mag alleen letters, - en ` bevatten.',
+            'regex' => 'Stad mag alleen letters, en \'`\' bevatten.',
         ],
         'country' => [
-            'regex' => 'Land mag alleen letters en - bevatten.',
+            'regex' => 'Land mag alleen letters en bevatten.',
         ],
         'name' => [
-            'regex' => 'Naam mag alleen cijfers, letters en - bevatten.',
+            'regex' => 'Naam mag alleen cijfers, letters en bevatten.',
         ],
         'attribute-name' => [
             'rule-name' => 'custom-message',],
+        'quantity' => [
+                'regex' => 'Hoeveelheid mag alleen nummers bevatten en moet beginnen met een positief cijfer.',
+            ]
 
     ],
 

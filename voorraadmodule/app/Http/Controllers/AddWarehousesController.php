@@ -9,7 +9,7 @@ class AddWarehousesController extends Controller
 {
     public function index()
     {
-        return view('warehouses/add');
+        return view('warehouses.add');
     }
 
     public function add(Request $request)

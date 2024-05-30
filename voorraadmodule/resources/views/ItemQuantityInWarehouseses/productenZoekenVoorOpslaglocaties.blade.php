@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="producten-pagina">
-<h1 style="text-align: center;">Zoek welke opslaglocaties de gezochte product hebben03</h1>
+<h1 style="text-align: center;">Zoek welke opslaglocaties de gezochte product hebben</h1>
 
   <!-- Adding a bit of space -->
   <div style="margin-bottom: 20px;"></div>

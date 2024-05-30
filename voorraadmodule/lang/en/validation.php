@@ -175,13 +175,13 @@ return [
             'regex' => 'Dit is geen valide postcode.',
         ],
         'city' => [
-            'regex' => 'Stad mag alleen letters, - en ` bevatten.',
+            'regex' => 'Stad mag alleen letters, en \'`\' bevatten.',
         ],
         'country' => [
-            'regex' => 'Land mag alleen letters en - bevatten.',
+            'regex' => 'Land mag alleen letters en bevatten.',
         ],
         'name' => [
-            'regex' => 'Naam mag alleen cijfers, letters en - bevatten.',
+            'regex' => 'Naam mag alleen cijfers, letters en bevatten.',
         ],
         'attribute-name' => [
             'rule-name' => 'custom-message',],

@@ -51,7 +51,7 @@ class UpdateProductController extends Controller
         }
 
         if ($request->has('deleteWarehouse')) {
-            
+
             ItemQuantityInWarehouses::whereIn('warehouse_id', array_keys($request->deleteWarehouse))
             ->where('product_id', $product->id)
             ->delete();

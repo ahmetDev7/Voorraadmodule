@@ -30,6 +30,7 @@
       <form action="{{ route('products.search') }}" method="GET">
         <input type="search" name="search" value="{{ request('search') }}" class="leading-snug border border-gray-300 block w-full appearance-none bg-gray-100 text-sm text-gray-600 py-1 px-4 pl-8 rounded-lg" placeholder="Zoeken" />
       </form>
+
         <div class="pointer-events-none absolute pl-3 inset-y-0 left-0 flex items-center px-2 text-gray-300">
 
           <svg class="fill-current h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.999 511.999">
@@ -77,7 +78,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="8" class="px-4 py-4 list-group-item-danger">Product niet in een opslag.</td>
+                <td colspan="8" class="px-4 py-4 list-group-item-danger">Product bestaat niet.</td>
             </tr>
         @endforelse
     </tbody>

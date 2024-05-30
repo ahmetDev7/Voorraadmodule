@@ -8,7 +8,7 @@
         @method('PUT')
         <label>Productnummer</label>
         <input type="text" name="productnummer" value="{{ $product->productnummer }}">
-        @if ($errors->has('serialnumber'))
+        @if ($errors->has('productnummer'))
         <p style="color:#FF0000;">{{ $errors->first('serialnumber') }}</p>
         @endif
         <label>Naam</label>
@@ -36,7 +36,7 @@
             @if ($errors->has("itemQuantities.{$warehouse->id}.quantity"))
             <p style="color:#FF0000;">{{ $errors->first("itemQuantities.{$warehouse->id}.quantity") }}</p>
             @endif
-            <input type="submit" name="deleteWarehouse[{{ $warehouse->id }}]" class="submit delete-button" value="verwijderen uit opslag" />
+            <input type="submit" name="deleteWarehouse[{{ $warehouse->id }}]" class="submit delete-button" value="product verwijderen uit opslag" />
         </div>
         @endforeach
 

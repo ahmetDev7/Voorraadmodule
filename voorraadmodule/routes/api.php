@@ -13,3 +13,5 @@ Route::post('/product/scan', function (Request $request) {
         'werknemer_id' => $werknemerId
     ]);
 });
+
+// Route::post('/product/scan', [AddProductWerknemerController::class, 'ProductToWerknemer']);

@@ -47,3 +47,5 @@ Route::post('/product-toevoegen-opslag/{id}', [App\Http\Controllers\ItemQuantity
 
 
 Route::get('/producten-zoeken-bij-opslag/', [App\Http\Controllers\ProductenZoekenBijOpslaglocatiesController::class, 'search'])->name('ItemQuantityInWarehouses.search');
+
+Route::get('/logs', [App\Http\Controllers\LoggerController::class, 'index'])->name('logger.index');

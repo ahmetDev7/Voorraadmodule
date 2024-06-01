@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddProductWerknemerController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,11 @@ Route::post('/producten/toevoegen', [App\Http\Controllers\AddProductController::
 
 Route::get('/werknemers/producten/toevoegen/{werknemerId}', [App\Http\Controllers\AddProductWerknemerController::class, 'index']);
 Route::post('/werknemers/producten/toevoegen/{werknemerId}', [App\Http\Controllers\AddProductWerknemerController::class, 'store'])->name('submit.form');
+
+Route::post('/products/select', [AddProductWerknemerController::class, 'index1'])->name('products.index');
+Route::get('/products/select/{werknemerId}', [AddProductWerknemerController::class, 'select'])->name('products.select');
+Route::get('/products/select-warehouse', [AddProductWerknemerController::class, 'selectWarehouse'])->name('products.selectWarehouse');
+Route::post('/products', [AddProductWerknemerController::class, 'store'])->name('products.store');
 
 Route::get('/werknemer/{id}/producten', [App\Http\Controllers\WerknemerController::class, 'showProducts'])->name('werknemer.products');
 

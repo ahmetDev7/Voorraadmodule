@@ -22,7 +22,7 @@ class AddProductWerknemerController extends Controller
         $itemInWarehouses = ItemQuantityInWarehouses::all();
 
 
-        return view('werknemers.addproduct', compact('werknemer', 'products', 'warehouse'));
+        return view('werknemers.addproduct', compact('werknemer', 'products', 'warehouse', 'werknemerId'));
     }
 
     // public function getItemoptions($warehouseID)
@@ -45,19 +45,56 @@ class AddProductWerknemerController extends Controller
     // }
 
 
+    public function select($werknemerId)
+    {
+        $products = Product::all();
+        return view('werknemers.select-product', compact('products', 'werknemerId'));
+    }
+    public function index1(Request $request)
+    {
+        $validatedData = $request->validate([
+            'werknemer_id' => 'required|exists:werknemers,id',
+            'product_id' => 'required|exists:products,id',
+        ]);
+
+        return redirect()->route('products.selectWarehouse', [
+            'werknemer_id' => $validatedData['werknemer_id'],
+            'product_id' => $validatedData['product_id']
+        ]);
+
+
+    }
+    public function selectWarehouse(Request $request)
+    {
+        $werknemerId = $request->input('werknemer_id');
+        $productId = $request->input('product_id');
+
+        $werknemer = Werknemer::findOrFail($werknemerId);
+        $product = Product::findOrFail($productId);
+
+        // $warehouses = Warehouse::all();
+
+
+        $warehouses = $product->warehouses1()->get();
+
+
+        // Return the view for selecting warehouse with necessary data
+        return view('werknemers.select-warehouse', compact('werknemerId', 'werknemer', 'product', 'warehouses'));
+    }
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'werknemer_id' => 'required|exists:werknemers,id',
-            'product' => 'required|exists:products,id',
+            'product_id' => 'required|exists:products,id',
             'quantity' => 'required|integer|min:1',
-            'WarehouseSelect' => 'required|exists:item_quantity_in_warehouses,warehouse_id|integer|min:1'
+            'warehouseSelect' => 'required|exists:item_quantity_in_warehouses,warehouse_id|integer|min:0'
         ]);
 
         $werknemerID = $validatedData['werknemer_id'];
-        $productID = $validatedData['product'];  // This is the product ID
+        $productID = $validatedData['product_id'];  // This is the product ID
         $quantity = $validatedData['quantity'];
-        $warehouseID = $validatedData['WarehouseSelect']; // this is the ID of the warehouse
+        $warehouseID = $validatedData['warehouseSelect']; // this is the ID of the warehouse
 
         $product = Product::find($productID);
         $werknemer = Werknemer::find($werknemerID);

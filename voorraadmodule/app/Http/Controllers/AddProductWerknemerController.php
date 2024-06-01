@@ -98,14 +98,14 @@ class AddProductWerknemerController extends Controller
         $werknemer = Werknemer::find($werknemerID);
 
         $warehouseItem = ItemQuantityInWarehouses::where('warehouse_id', $warehouseID)->where('product_id', $productID)->first();
-        if ($warehouseItem && $warehouseItem->quantity >= $quantity)
+        if ($warehouseItem && $warehouseItem->quantity >= $quantity) // checkt of de warehouse die heeft en genoeg heeft
         {
             $warehouseItem-> quantity -= $quantity;
             $warehouseItem->save();
         }
-        else
+        else // anders gaat het direct weg
         {
-            return redirect()->to(url('/werknemer/' . $werknemerID . '/producten'))->with('success', 'product not in Warehouse!');
+            return redirect()->to(url('/werknemer/' . $werknemerID . '/producten'))->with('failure', 'product not in Warehouse!');
         }
 
 

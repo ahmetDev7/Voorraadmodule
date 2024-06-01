@@ -19,8 +19,6 @@ class AddProductWerknemerController extends Controller
 
         $warehouse = Warehouse::all();
 
-        $itemInWarehouses = ItemQuantityInWarehouses::all();
-
 
         return view('werknemers.addproduct', compact('werknemer', 'products', 'warehouse', 'werknemerId'));
     }
@@ -88,13 +86,13 @@ class AddProductWerknemerController extends Controller
             'werknemer_id' => 'required|exists:werknemers,id',
             'product_id' => 'required|exists:products,id',
             'quantity' => 'required|integer|min:1',
-            'warehouseSelect' => 'required|exists:item_quantity_in_warehouses,warehouse_id|integer|min:0'
+            'warehouse' => 'required|exists:item_quantity_in_warehouses,warehouse_id|integer|min:0'
         ]);
 
         $werknemerID = $validatedData['werknemer_id'];
         $productID = $validatedData['product_id'];  // This is the product ID
         $quantity = $validatedData['quantity'];
-        $warehouseID = $validatedData['warehouseSelect']; // this is the ID of the warehouse
+        $warehouseID = $validatedData['warehouse']; // this is the ID of the warehouse
 
         $product = Product::find($productID);
         $werknemer = Werknemer::find($werknemerID);

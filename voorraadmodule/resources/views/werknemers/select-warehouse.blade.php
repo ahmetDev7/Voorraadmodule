@@ -22,12 +22,13 @@
         <input type="hidden" name="product_id" value="{{ $product->id }}">
 
         <label for="warehouse" style="color: black;">Select a warehouse: </label>
-        <select name="warehouseSelect" id="warehouseSelect" onchange="updateMaxQuantity()" style="color: black;">
+        <select name="warehouse" id="warehouse" onchange="updateMaxQuantity()" style="color: black;">
             @if ($warehouses->isEmpty())
                 <option value="" disabled style="color: black;">Geen warehouses die deze product heeft</option>
             @else
-                <option value="-1">--Select a warehouse</option>
+                <option value=-1> --Select a warehouse</option>
                 @foreach($warehouses as $warehouse)
+
                     <option value="{{ $warehouse->id }}"
                         data-quantity="{{ $warehouse->products->firstWhere('id', $product->id)->pivot->quantity ?? 0 }}"
                         style="color: black;">

@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <h1 style="color: black;">Select a Warehouse for {{ $product->name }} {{$werknemer->name}}</h1>
+    <h1 style="color: black;">Selecteer een magazijn {{ $product->name }} {{$werknemer->name}}</h1>
 
     <form action="{{ route('products.store') }}" method="POST">
         @csrf
@@ -26,7 +26,7 @@
             @if ($warehouses->isEmpty())
                 <option value="" disabled style="color: black;">Geen warehouses die deze product heeft</option>
             @else
-                <option value=-1> --Select a warehouse</option>
+                <option value=-1> --kies een magazijn</option>
                 @foreach($warehouses as $warehouse)
 
                     <option value="{{ $warehouse->id }}"
@@ -47,11 +47,11 @@
         <label for="quantity" style="color: black;">Quantity:</label>
         <input type="number" name="quantity" id="quantity" value="1" min="1" style="color: black;">
 
-        <button type="submit" style="color: black;">Submit</button>
+        <button type="submit" style="color: black;">Verzend</button>
     </form>
 
-    <a href="{{ route('products.select', ['werknemerId' => $werknemerId]) }}" style="color: black;">Back to Select
-        Product</a>
+    <a href="{{ route('products.select', ['werknemerId' => $werknemerId]) }}" style="color: black;">Ga terug naar
+        producten</a>
 
 </div>
 

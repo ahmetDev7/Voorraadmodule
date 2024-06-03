@@ -52,7 +52,7 @@ class AddProductWerknemerController extends Controller
     {
         $validatedData = $request->validate([
             'werknemer_id' => 'required|exists:werknemers,id',
-            'product_id' => 'required|exists:products,id',
+            'product_id' => 'required|integer|exists:products,id|exists:item_quantity_in_warehouses,product_id|min:1',
         ]);
 
         return redirect()->route('products.selectWarehouse', [

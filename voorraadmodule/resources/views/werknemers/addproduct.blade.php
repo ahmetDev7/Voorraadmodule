@@ -22,6 +22,7 @@
 
         <label for="product" style="color: black;">Select a product:</label>
         <select name="product_id" id="product" style="color: black;">
+            <option value="-1" style="color: black">--Select a product--</option>
             @foreach($products as $product)
                 <option value="{{ $product->id }}" style="color: black;">{{ $product->name }}</option>
             @endforeach

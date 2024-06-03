@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <h1 style="color: black;">Select a Warehouse for {{ $product->name }} {{$werknemer->name}}</h1>
+    <h1 style="color: black;">Selecteer een warenhuis voor {{ $product->name }} {{$werknemer->name}}</h1>
 
     <form action="{{ route('products.store') }}" method="POST">
         @csrf
@@ -26,7 +26,7 @@
             @if ($warehouses->isEmpty())
                 <option value="" disabled style="color: black;">Geen warehouses die deze product heeft</option>
             @else
-                <option value=-1> --Select a warehouse</option>
+                <option value=-1> --Selecteer een a warenhuis--</option>
                 @foreach($warehouses as $warehouse)
 
                     <option value="{{ $warehouse->id }}"

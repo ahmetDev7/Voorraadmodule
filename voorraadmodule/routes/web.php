@@ -54,6 +54,9 @@ Route::get('/products/{id}/archive', [App\Http\Controllers\ArchiveProductControl
 Route::get('/producten/archief', [App\Http\Controllers\ArchiveProductController::class, 'archief'])->name('products.unarchive');
 Route::get('/products/archive-reverse/{id}', [App\Http\Controllers\ArchiveProductController::class, 'archiveReverse'])->name('products.archiveReverse');
 
+// toevoegen van de werknemers
+Route::get('/werknemers/toevoegen', [App\Http\Controllers\WerknemerController::class, 'addView'])->name('werknemers.toevoegen');
+Route::post('/werknemers/toevoegen', [App\Http\Controllers\WerknemerController::class, 'Addwerknemer']);
 
 
 

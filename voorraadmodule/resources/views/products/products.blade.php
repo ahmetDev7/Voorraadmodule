@@ -4,9 +4,11 @@
 
 <div class="producten-pagina">
   <h1>PRODUCTEN PAGINA</h1>
+
   <a href="/producten/toevoegen" class="add-button">
     <p>Product toevoegen</p>
   </a>
+  
 
   <!-- Adding a bit of space -->
   <div style="margin-bottom: 20px;"></div>
@@ -60,7 +62,7 @@
               <td class="px-4 py-4">{{$p->name}}</td>
               <td class="px-4 py-4">{{$p->description}}</td>
               <td class="px-4 py-4">{{$p->category}}</td>
-              <td class="px-4 py-4">{{$p->total_quantity}}</td>
+              <td class="px-4 py-4">{{$p->serial_number_count}}</td>
               <td class="px-4 py-4">
                 <a href="{{ route('products.edit', $p->id) }}" class="small-button">
                   <img id="logo" src="{{url('/images/edit-icon.png')}}">
@@ -74,11 +76,12 @@
                 <a href="{{ route('products.show', $p->id) }}" class="small-button-2"> <!-- Add the small-button class to the anchor tag -->
                   <img id="logo" src="{{url('/images/info-icon.png')}}">
                 </a>
+                
               </td>
             </tr>
             @empty
             <tr>
-                <td colspan="8" class="px-4 py-4 list-group-item-danger">Product bestaat niet.</td>
+                <td colspan="8" class="px-4 py-4 list-group-item-danger">geen producten.</td>
             </tr>
         @endforelse
     </tbody>

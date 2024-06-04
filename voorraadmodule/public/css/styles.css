@@ -25,7 +25,6 @@ nav ul {
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 70px;
-    color: gray;
     display: flex;
 }
 
@@ -109,7 +108,6 @@ nav ul li a:hover {
     width: 500px;
     margin-left: auto;
     margin-right: auto;
-    color: gray;
 }
 
 .default-form label {
@@ -195,13 +193,4 @@ nav ul li a:hover {
 
 .dropdown .fa-caret-down {
     margin-left: 5px;
-}
-
-.delete-button {
-    background-color: rgb(255, 0, 0) !important;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
 }

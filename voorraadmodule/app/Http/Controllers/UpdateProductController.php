@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ItemQuantityInWarehouses;
+use App\Models\ProductSerialNumber;
 
 class UpdateProductController extends Controller
 {
@@ -22,6 +23,7 @@ class UpdateProductController extends Controller
         $product = Product::findOrFail($id);
         $request->validate([
             'productnummer' => 'required',
+            'serialnumber' => 'required|string|required|max:255',
             'name' => 'required',
             'description' => 'required|string|required|max:255',
             'category' => 'required'
@@ -32,6 +34,8 @@ class UpdateProductController extends Controller
         $product->description = $request->input('description');
         $product->category = $request->input('category');
         $product->save();
+
+
 
         foreach ($request->input('itemQuantities') as $warehouseId => $data) {
             $request->validate([

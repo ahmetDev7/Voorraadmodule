@@ -11,6 +11,11 @@
         @if ($errors->has('productnummer'))
         <p style="color:#FF0000;">{{ $errors->first('serialnumber') }}</p>
         @endif
+        <label>Serienummer</label>
+        <input type="text" name="serialnumber" value="{{ $product->serialnumber }}">
+        @if ($errors->has('serialnumber'))
+        <p style="color:#FF0000;">{{ $errors->first('serialnumber') }}</p>
+        @endif
         <label>Naam</label>
         <input type="text" name="name" value="{{ $product->name }}">
         @if ($errors->has('name'))

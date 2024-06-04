@@ -23,7 +23,7 @@
         <select name="product_id" id="product" style="color: black;">
             <option value=-1> --kies een Product</option>
 
-            @foreach($products as $product)
+            @foreach($productsSelect as $product)
                 <option value="{{ $product->id }}" style="color: black;">{{ $product->name }}</option>
             @endforeach
         </select>

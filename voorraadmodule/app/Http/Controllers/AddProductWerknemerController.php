@@ -19,8 +19,9 @@ class AddProductWerknemerController extends Controller
 
         $warehouse = Warehouse::all();
 
+        $productsSelect = Product::whereNotNull('warehouse_id')->get();
 
-        return view('werknemers.addproduct', compact('werknemer', 'products', 'warehouse', 'werknemerId'));
+        return view('werknemers.addproduct', compact('werknemer', 'products', 'warehouse', 'werknemerId', 'productsSelect'));
     }
 
     // public function getItemoptions($warehouseID)
@@ -46,13 +47,14 @@ class AddProductWerknemerController extends Controller
     public function select($werknemerId)
     {
         $products = Product::all();
+        
         return view('werknemers.addproduct', compact('products', 'werknemerId'));
     }
     public function index1(Request $request)
     {
         $validatedData = $request->validate([
             'werknemer_id' => 'required|exists:werknemers,id',
-            'product_id' => 'required|exists:products,id',
+            'product_id' => 'required|integer|exists:products,id|exists:item_quantity_in_warehouses,product_id|min:1',
         ]);
 
         return redirect()->route('products.selectWarehouse', [

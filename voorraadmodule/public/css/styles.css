@@ -53,6 +53,17 @@ nav ul li a:hover {
     vertical-align: middle;
 }
 
+.small-add-button {
+    display: inline-flex;
+    height: 50px;
+    width: 100px;
+    background-color: green;
+    border-radius: 25px;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+
 .add-button p {
     margin: auto;
 }

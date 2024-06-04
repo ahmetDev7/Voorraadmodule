@@ -25,8 +25,10 @@ Route::get('/producten/', [ProductController::class, 'index'])->name('products.i
 Route::get('/Werknemers/', [App\Http\Controllers\WerknemerController::class, 'index'])->name('werknemers.index');
 
 Route::get('/products/{id}/archive', [ProductController::class, 'archive'])->name('products.archive');
+
 Route::get('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'index'])->name('products.add'); // Changed route name to 'products.add'
 Route::post('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'add']);
+
 Route::get('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductController::class, 'edit'])->name('products.edit');
 Route::put('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductController::class, 'update'])->name('products.update');
 Route::get('/producten/{id}', [ProductController::class, 'show'])->name('products.show');
@@ -49,3 +51,7 @@ Route::post('/product-toevoegen-opslag/{id}', [App\Http\Controllers\ItemQuantity
 Route::get('/producten-zoeken-bij-opslag/', [App\Http\Controllers\ProductenZoekenBijOpslaglocatiesController::class, 'search'])->name('ItemQuantityInWarehouses.search');
 
 Route::get('/logs', [App\Http\Controllers\LoggerController::class, 'index'])->name('logger.index');
+
+
+Route::get('/werknemer/{id}/overdraag', [App\Http\Controllers\TransferToWarehouseController::class, 'index'])->name('products.transfer');
+// Route::post('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'add']);

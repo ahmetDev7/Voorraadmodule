@@ -2,6 +2,7 @@ html,
 body {
     background-color: rgb(123, 0, 47);
     height: 100%;
+    color:black;
 }
 
 .container {
@@ -12,6 +13,10 @@ body {
     background-color: rgb(123, 0, 47);
     padding-top: 120px;
     max-width: 100% !important;
+}
+
+table{
+    color:black;
 }
 
 nav {

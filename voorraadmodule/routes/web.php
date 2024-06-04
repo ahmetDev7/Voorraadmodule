@@ -33,7 +33,7 @@ Route::post('/producten/toevoegen', [App\Http\Controllers\AddProductController::
 Route::get('/werknemers/producten/toevoegen/{werknemerId}', [App\Http\Controllers\AddProductWerknemerController::class, 'index']);
 Route::post('/werknemers/producten/toevoegen/{werknemerId}', [App\Http\Controllers\AddProductWerknemerController::class, 'store'])->name('submit.form');
 
-Route::post('/products/select', [AddProductWerknemerController::class, 'index1'])->name('products.index');
+Route::post('/products/select', [AddProductWerknemerController::class, 'index1']);
 Route::get('/products/select/{werknemerId}', [AddProductWerknemerController::class, 'select'])->name('products.select');
 Route::get('/products/select-warehouse', [AddProductWerknemerController::class, 'selectWarehouse'])->name('products.selectWarehouse');
 Route::post('/products', [AddProductWerknemerController::class, 'store'])->name('products.store');
@@ -50,9 +50,9 @@ Route::get('/producten/{id}', [ProductController::class, 'show'])->name('product
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 
 
-Route::get('/products/{id}/archive', [App\Http\Controllers\ArchiveProductController::class, 'archive'])->name('products.archive');
+Route::get('/producten/{id}/archive', [App\Http\Controllers\ArchiveProductController::class, 'archive'])->name('products.archive');
 Route::get('/producten/archief', [App\Http\Controllers\ArchiveProductController::class, 'archief'])->name('products.unarchive');
-Route::get('/products/archive-reverse/{id}', [App\Http\Controllers\ArchiveProductController::class, 'archiveReverse'])->name('products.archiveReverse');
+Route::get('/producten/archive-reverse/{id}', [App\Http\Controllers\ArchiveProductController::class, 'archiveReverse'])->name('products.archiveReverse');
 
 // toevoegen van de werknemers
 Route::get('/werknemers/toevoegen', [App\Http\Controllers\WerknemerController::class, 'addView'])->name('werknemers.toevoegen');

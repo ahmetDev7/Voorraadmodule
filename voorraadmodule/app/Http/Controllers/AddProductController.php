@@ -15,6 +15,10 @@ class AddProductController extends Controller
         // Pass the warehouses to the view
         return view('products.add', compact('warehouses'));
     }
+    public function indexForEmployee()
+    {
+        return view('products/addToEmployee');
+    }
 
     public function add(Request $request)
     {
@@ -34,4 +38,6 @@ class AddProductController extends Controller
 
         return redirect()->back()->with('success', 'Product is toegevoegd aan de database!');
     }
+
+
 }

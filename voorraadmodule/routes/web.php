@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddProductWerknemerController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,21 +23,39 @@ Route::get('/', function () {
 });
 
 Route::get('/producten/', [ProductController::class, 'index'])->name('products.index');
-Route::get('/Werknemers/', [App\Http\Controllers\WerknemerController::class, 'index'])->name('werknemers.index');
+Route::get('/werknemers/', [App\Http\Controllers\WerknemerController::class, 'index'])->name('werknemers.index');
 
-Route::get('/products/{id}/archive', [ProductController::class, 'archive'])->name('products.archive');
-Route::get('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'index'])->name('products.add'); // Changed route name to 'products.add'
+Route::get('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'index'])->name('products.add');
 Route::post('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'add']);
+
+
+
+Route::get('/werknemers/producten/toevoegen/{werknemerId}', [App\Http\Controllers\AddProductWerknemerController::class, 'index']);
+Route::post('/werknemers/producten/toevoegen/{werknemerId}', [App\Http\Controllers\AddProductWerknemerController::class, 'store'])->name('submit.form');
+
+Route::post('/products/select', [AddProductWerknemerController::class, 'index1'])->name('products.index');
+Route::get('/products/select/{werknemerId}', [AddProductWerknemerController::class, 'select'])->name('products.select');
+Route::get('/products/select-warehouse', [AddProductWerknemerController::class, 'selectWarehouse'])->name('products.selectWarehouse');
+Route::post('/products', [AddProductWerknemerController::class, 'store'])->name('products.store');
+
+Route::get('/werknemer/{id}/producten', [App\Http\Controllers\WerknemerController::class, 'showProducts'])->name('werknemer.products');
+
+
+
+
+
 Route::get('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductController::class, 'edit'])->name('products.edit');
 Route::put('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductController::class, 'update'])->name('products.update');
 Route::get('/producten/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 
 
+Route::get('/products/{id}/archive', [App\Http\Controllers\ArchiveProductController::class, 'archive'])->name('products.archive');
+Route::get('/producten/archief', [App\Http\Controllers\ArchiveProductController::class, 'archief'])->name('products.unarchive');
+Route::get('/products/archive-reverse/{id}', [App\Http\Controllers\ArchiveProductController::class, 'archiveReverse'])->name('products.archiveReverse');
 
 
 
-Route::get('/werknemer/{id}/products', [App\Http\Controllers\WerknemerController::class, 'showProducts'])->name('werknemer.products');
 
 Route::get('/opslaglocaties/', [App\Http\Controllers\WarehouseController::class, 'index']);
 Route::get('/opslaglocaties/toevoegen', [App\Http\Controllers\AddWarehousesController::class, 'index'])->name('warehouses.index');

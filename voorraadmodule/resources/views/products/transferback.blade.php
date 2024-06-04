@@ -1,15 +1,16 @@
-<!-- transfer.blade.php -->
-<form action="{{ route('product.validate') }}" method="POST">
+@extends('layouts.master')
+
+@section('content')
+<form action="{{ route('product.done') }}" class="default-form" method="POST">
     @csrf
-    <input type="hidden" name="owner" value="{{ $owner }}">
-    <input type="hidden" name="product" value="{{ $product }}">
+    <input type="hidden" name="ownerid" value="{{ $owner->id}}">
+    <input type="hidden" name="productid" value="{{ $product->id }}">
 
 
-    <label for="quantity">Quantity:</label>
+    <label for="quantity">Hoeveelheid beschikbaar: {{$quantity}}</label>
     <input type="number" name="quantity" id="quantity" min="1" max="{{ $quantity }}">
 
-    <!-- Input fields for warehouse selection -->
-    <label for="warehouse">Choose a Warehouse:</label>
+    <label for="warehouse">Selecteer een magazijn</label>
     <select name="warehouse" id="warehouse">
         @foreach($warehouses as $warehouse)
             <option value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
@@ -18,7 +19,7 @@
 
 
 
-    <button type="submit">Transfer</button>
+    <button type="submit">verzenden</button>
 </form>
 
 <script>
@@ -29,3 +30,4 @@
         }
     });
 </script>
+@stop

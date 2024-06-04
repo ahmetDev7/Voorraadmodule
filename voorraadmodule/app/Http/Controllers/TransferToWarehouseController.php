@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Werknemer;
 use App\Models\Product;
 use App\Models\Warehouse;
+use App\Models\ItemQuantityInWarehouses;
+
+use Illuminate\Support\Facades\DB;
+
 
 
 
@@ -31,28 +35,62 @@ class TransferToWarehouseController extends Controller
         return view('products.transferback', compact('product', 'warehouses', 'owner', 'quantity'));
     }
 
-
-
-    public function validate(Request $request)
+    public function transfer(Request $request)
     {
         $validatedData = $request->validate([
+            'ownerid' => 'required',
+            'productid' => 'required',
             'quantity' => 'required|integer|min:1',
-            'warehouse' => 'required|exists:warehouses,id',
+            'warehouse' => 'required',
         ]);
-        $owner = $request->input('owner');
-        $product = $request->input('product');
+
+        $ownerId = $validatedData['ownerid'];
+        $productId = $validatedData['productid'];
         $quantity = $validatedData['quantity'];
-        $warehouse = $validatedData['warehouse'];
+        $warehouseId = $validatedData['warehouse'];
 
-        $owner = Werknemer::findOrFail($owner);
-        $warehouse = Warehouse::findOrFail($warehouse);
+        $owner = Werknemer::find($ownerId);
+        $product = Product::find($productId);
+
+        $quantityInPivot = $owner->products()->where('product_id', $productId)->first()->pivot->quantity;
 
 
-        $owner->quantity -= $quantity;
-        $owner->save();
+        $check = ItemQuantityInWarehouses::where('product_id', $productId)
+            ->where('warehouse_id', $warehouseId)
+            ->first();
+        $itemQuantity = new ItemQuantityInWarehouses();
+        $itemQuantity->product_id = $productId;
+        $itemQuantity->warehouse_id = $warehouseId;
+        $itemQuantity->quantity = $quantity;
 
-        $warehouse->quantity += $quantity;
-        $warehouse->save();
+        if ($quantityInPivot > $quantity) {
+
+            $owner->products()->updateExistingPivot($productId, ['quantity' => $quantityInPivot - $quantity]);
+
+
+
+        } elseif ($quantityInPivot == $quantity) {
+            DB::table('werknemer_product')
+                ->where('werknemer_id', $owner->id)
+                ->where('product_id', $product->id)
+                ->delete();
+        } else {
+            return; // zou nooit moeten kunnen
+        }
+        if ($check) {
+            $check->quantity += $quantity;
+            $check->save();
+        } else {
+            $itemQuantity = new ItemQuantityInWarehouses();
+            $itemQuantity->product_id = $productId;
+            $itemQuantity->warehouse_id = $warehouseId;
+            $itemQuantity->quantity = $quantity;
+            $itemQuantity->save();
+        }
+
+        return redirect("/werknemer/{$owner->id}/products");
     }
+
+
 
 }

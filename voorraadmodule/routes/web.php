@@ -54,4 +54,4 @@ Route::get('/logs', [App\Http\Controllers\LoggerController::class, 'index'])->na
 
 
 Route::get('/werknemer/{werkid}/{productid}/overdraag', [App\Http\Controllers\TransferToWarehouseController::class, 'index'])->name('products.transfer');
-Route::post('/werknemer/overdraag', [App\Http\Controllers\TransferToWarehouseController::class, 'validate'])->name('product.validate');
+Route::post('/werknemer/overdraag', [App\Http\Controllers\TransferToWarehouseController::class, 'transfer'])->name('product.done');

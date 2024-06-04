@@ -21,8 +21,7 @@ class ArchiveProductController extends Controller
             'productnummer' => $product->productnummer,
             'name' => $product->name,
             'description' => $product->description,
-            'category' => $product->category,
-            'warehouse_id' => $product->warehouse_id,
+            'category' => $product->category
         ]);
 
         $product->delete();
@@ -42,13 +41,12 @@ class ArchiveProductController extends Controller
             'productnummer' => $ArchivedProduct->productnummer,
             'name' => $ArchivedProduct->name,
             'description' => $ArchivedProduct->description,
-            'category' => $ArchivedProduct->category,
-            'warehouse_id' => $ArchivedProduct->warehouse_id,
+            'category' => $ArchivedProduct->category
         ]);
 
         $ArchivedProduct->delete();
 
-        return redirect()->route('products.unarchive')->with('success', 'Product deleted successfully.');
+        return redirect()->route('products.list')->with('success', 'Product deleted successfully.');
     }
 
     public function archief()

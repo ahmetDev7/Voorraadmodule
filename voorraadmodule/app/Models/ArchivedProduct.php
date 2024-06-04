@@ -14,6 +14,5 @@ class ArchivedProduct extends Model
         'name',
         'description',
         'category',
-        'warehouse_id',
     ];
 }

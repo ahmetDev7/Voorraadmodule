@@ -12,10 +12,10 @@ class TransferToWarehouseController extends Controller
     public function index($id)
     {
         $Product = Product::find($id);
-        $Product = Product::with('Warehouse')->findOrFail($id);
+        $product = Product::with('warehouses')->findOrFail($id);
 
 
-        return view('products\transferback', compact('Product'));
+        return view('products\transferback', compact('product'));
 
 
     }

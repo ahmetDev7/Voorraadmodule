@@ -4,8 +4,8 @@
 
 <div class="producten-pagina">
     <h1>WERKNEMERS</h1>
-    <!-- <a href="/producten/toevoegen" class="add-button">
-        <p>Product toevoegen</p> -->
+    <a href="/werknemers/toevoegen" class="add-button">
+        <p>Werknemers toevoegen</p>
     </a>
 
     <!-- Adding a bit of space -->

@@ -53,5 +53,5 @@ Route::get('/producten-zoeken-bij-opslag/', [App\Http\Controllers\ProductenZoeke
 Route::get('/logs', [App\Http\Controllers\LoggerController::class, 'index'])->name('logger.index');
 
 
-Route::get('/werknemer/{id}/overdraag', [App\Http\Controllers\TransferToWarehouseController::class, 'index'])->name('products.transfer');
-// Route::post('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'add']);
+Route::get('/werknemer/{werkid}/{productid}/overdraag', [App\Http\Controllers\TransferToWarehouseController::class, 'index'])->name('products.transfer');
+Route::post('/werknemer/overdraag', [App\Http\Controllers\TransferToWarehouseController::class, 'validate'])->name('product.validate');

@@ -64,7 +64,8 @@
                                         <td class="px-4 py-4">{{$p->category}}</td>
                                         <td class="px-4 py-4">{{ $p->pivot->quantity }}</td>
                                         <td class="px-4 py-4">
-                                            <a href="{{ route('products.transfer', $p->id) }}" class="small-add-button">
+                                            <a href="{{ route('products.transfer', ['werkid' => $werknemer->id, 'productid' => $p->id]) }}"
+                                                class="small-add-button">
                                                 <p>overdraag product terug</p>
                                             </a>
 

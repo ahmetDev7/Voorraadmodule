@@ -4,6 +4,11 @@ body {
     height: 100%;
 }
 
+.wide-input {
+    width: 60px;
+}
+
+
 .container {
     display: flex;
     margin: auto;

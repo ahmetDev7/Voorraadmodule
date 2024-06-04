@@ -28,16 +28,29 @@ class WarehouseController extends Controller
         return view('warehouses.EditWarehouse', compact('warehouse'));
     }
 
-    // this is the get(/oplaglocaties/{id}/aanpassen)
+    // this is the put(/oplaglocaties/{id}/aanpassen)
     public function update(Request $request, int $id)
     {
         $warehouse = Warehouse::findOrFail($id);
         $request->validate([
             'naam' => 'required|string',
             'straat' => 'required|string',
-            'housenumber' => 'required|string',
-            'category' => 'required'
+            'huisnummer' => 'required|string',
+            'postcode' => 'required|string|min:6|max:6',
+            'stad' => 'required|string',
+            'land' => 'required|string'
         ]);
+
+        $warehouse->name = $request->input('naam');
+        $warehouse->street = $request->input('straat');
+        $warehouse->housenumber = $request->input('huisnummer');
+        $warehouse->zipcode = $request->input('postcode');
+        $warehouse->city = $request->input('stad');
+        $warehouse->country = $request->input('land');
+
+        $warehouse->save();
+
+        return redirect()->back()->with('success', 'Opslaglocatie is succesvol bijgewerkt!');
 
     }
 

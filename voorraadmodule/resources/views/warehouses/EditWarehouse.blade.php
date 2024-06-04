@@ -17,14 +17,26 @@
         <p style="color:#FF0000;">{{ $errors->first('straat') }}</p>
         @endif
         <label>Huisnummer</label>
-        <input type="text" name="Huisnummer" value="{{ $warehouse->housenumber }}">
-        @if ($errors->has('Huisnummer'))
-        <p style="color:#FF0000;">{{ $errors->first('Huisnummer') }}</p>
+        <input type="text" name="huisnummer" value="{{ $warehouse->housenumber }}">
+        @if ($errors->has('huisnummer'))
+        <p style="color:#FF0000;">{{ $errors->first('huisnummer') }}</p>
         @endif
-        <input type="text" name="Huisnummer" value="{{ $warehouse->housenumber }}">
-        @if ($errors->has('Huisnummer'))
-        <p style="color:#FF0000;">{{ $errors->first('Huisnummer') }}</p>
+        <label>Postcode</label>
+        <input type="text" name="postcode" value="{{ $warehouse->zipcode }}">
+        @if ($errors->has('postcode'))
+        <p style="color:#FF0000;">{{ $errors->first('postCode') }}</p>
         @endif
+        <label>Stad</label>
+        <input type="text" name="stad" value="{{ $warehouse->city }}">
+        @if ($errors->has('stad'))
+        <p style="color:#FF0000;">{{ $errors->first('stad') }}</p>
+        @endif
+        <label>Land</label>
+        <input type="text" name="land" value="{{ $warehouse->country }}">
+        @if ($errors->has('land'))
+        <p style="color:#FF0000;">{{ $errors->first('land') }}</p>
+        @endif
+
 
         <input class="submit" type="submit" value="Aanpassen" />
         @if(session()->has('success'))

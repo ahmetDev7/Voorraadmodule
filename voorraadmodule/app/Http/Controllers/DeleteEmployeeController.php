@@ -19,8 +19,11 @@ class DeleteEmployeeController extends Controller
 
         $productsToDelete = Werknemer_product::where('werknemer_id', $id);
 
-        $toRemove = Werknemer_product::findMany($productsToDelete->id);
-        $toRemove->delete();
+        foreach ($productsToDelete as $product)
+        {
+            $toremoveproduct = werknemer_product::find($product->id);
+            $toremoveproduct -> delete();
+        }
 
 
         $employee->delete();

@@ -19,8 +19,9 @@ class AddProductWerknemerController extends Controller
 
         $warehouse = Warehouse::all();
 
+        $productsSelect = Product::whereNotNull('warehouse_id')->get();
 
-        return view('werknemers.addproduct', compact('werknemer', 'products', 'warehouse', 'werknemerId'));
+        return view('werknemers.addproduct', compact('werknemer', 'products', 'warehouse', 'werknemerId', 'productsSelect'));
     }
 
     // public function getItemoptions($warehouseID)
@@ -46,7 +47,8 @@ class AddProductWerknemerController extends Controller
     public function select($werknemerId)
     {
         $products = Product::all();
-        return view('werknemers.select-product', compact('products', 'werknemerId'));
+        
+        return view('werknemers.addproduct', compact('products', 'werknemerId'));
     }
     public function index1(Request $request)
     {
@@ -100,10 +102,9 @@ class AddProductWerknemerController extends Controller
         $warehouseItem = ItemQuantityInWarehouses::where('warehouse_id', $warehouseID)->where('product_id', $productID)->first();
         if ($warehouseItem && $warehouseItem->quantity >= $quantity) // checkt of de warehouse die heeft en genoeg heeft
         {
-            $warehouseItem-> quantity -= $quantity;
+            $warehouseItem->quantity -= $quantity;
             $warehouseItem->save();
-        }
-        else // anders gaat het direct weg
+        } else // anders gaat het direct weg
         {
             return redirect()->to(url('/werknemer/' . $werknemerID . '/producten'))->with('failure', 'product not in Warehouse!');
         }

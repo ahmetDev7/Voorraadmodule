@@ -50,7 +50,8 @@ Route::put('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductContr
 Route::get('/producten/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 
-Route::get('/producten/archief', [ArchiveProductController::class, 'archief'])->name('products.unarchive');
+Route::get('/archief', [ArchiveProductController::class, 'archief'])->name('products.unarchive');
+// Route::get('/producten/archief', [ArchiveProductController::class, 'archief'])->name('products.unarchive');
 Route::get('/producten/{id}/archive', [ArchiveProductController::class, 'archive'])->name('products.archive');
 Route::get('/producten/archive-reverse/{id}', [ArchiveProductController::class, 'archiveReverse'])->name('products.archiveReverse');
 

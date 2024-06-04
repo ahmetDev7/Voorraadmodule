@@ -3,7 +3,7 @@
 @section('content')
 <div class="producten-pagina">
     <h1>Werknemer toevoegen</h1>
-    <form class="default-form" action="{{ route('products.add') }}" method="post">
+    <form class="default-form" action="{{ route('werknemers.toevoegen') }}" method="post">
         @csrf
         <label>Naam</label>
         <input type="text" name="name" value="">

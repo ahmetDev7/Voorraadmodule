@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 
 Route::get('/producten/', [ProductController::class, 'index'])->name('products.index');
-Route::get('/Werknemers/', [App\Http\Controllers\WerknemerController::class, 'index'])->name('werknemers.index');
+Route::get('/werknemers/', [App\Http\Controllers\WerknemerController::class, 'index'])->name('werknemers.index');
 
 Route::get('/products/{id}/archive', [ProductController::class, 'archive'])->name('products.archive');
 Route::get('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'index'])->name('products.add'); // Changed route name to 'products.add'
@@ -34,8 +34,8 @@ Route::get('/products/search', [ProductController::class, 'search'])->name('prod
 
 
 // toevoegen van de werknemers
-Route::get('/Werknemers/toevoegen', [App\Http\Controllers\WerknemerController::class, 'addView'])->name('werknemers.toevoegen');
-Route::post('/Werknemers/toevoegen', [App\Http\Controllers\WerknemerController::class, 'Addwerknemer']);
+Route::get('/werknemers/toevoegen', [App\Http\Controllers\WerknemerController::class, 'addView'])->name('werknemers.toevoegen');
+Route::post('/werknemers/toevoegen', [App\Http\Controllers\WerknemerController::class, 'Addwerknemer']);
 
 
 Route::get('/werknemer/{id}/products', [App\Http\Controllers\WerknemerController::class, 'showProducts'])->name('werknemer.products');

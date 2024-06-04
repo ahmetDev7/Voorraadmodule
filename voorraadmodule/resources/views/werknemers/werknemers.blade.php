@@ -4,7 +4,7 @@
 
 <div class="producten-pagina">
     <h1>WERKNEMERS</h1>
-    <-- <a href="/werknemers/toevoegen" class="add-button">
+    <a href="/werknemers/toevoegen" class="add-button">
         <p>Werknemers toevoegen</p>
     </a>
 

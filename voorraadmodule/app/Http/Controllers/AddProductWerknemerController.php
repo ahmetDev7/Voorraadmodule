@@ -47,7 +47,7 @@ class AddProductWerknemerController extends Controller
     public function select($werknemerId)
     {
         $products = Product::all();
-        
+
         return view('werknemers.addproduct', compact('products', 'werknemerId'));
     }
     public function index1(Request $request)
@@ -100,7 +100,12 @@ class AddProductWerknemerController extends Controller
         $werknemer = Werknemer::find($werknemerID);
 
         $warehouseItem = ItemQuantityInWarehouses::where('warehouse_id', $warehouseID)->where('product_id', $productID)->first();
-        if ($warehouseItem && $warehouseItem->quantity >= $quantity) // checkt of de warehouse die heeft en genoeg heeft
+
+        if ($warehouseItem && $warehouseItem->quantity == $quantity)// checkt of de warehouse waarvan je afhaald genoeg heeft. als exact genoeg verwijdert het de product
+        {
+            ItemQuantityInWarehouses::destroy($warehouseItem->id);
+        }
+        else if ($warehouseItem && $warehouseItem->quantity > $quantity) // als de warenhuis meer dan genoeg heeft verlaagt het de kwantiteit
         {
             $warehouseItem->quantity -= $quantity;
             $warehouseItem->save();

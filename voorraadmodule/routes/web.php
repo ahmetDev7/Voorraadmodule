@@ -33,7 +33,9 @@ Route::get('/producten/{id}', [ProductController::class, 'show'])->name('product
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 
 
-
+// toevoegen van de werknemers
+Route::get('/Werknemers/toevoegen', [App\Http\Controllers\WerknemerController::class, 'addView'])->name('werknemers.toevoegen');
+Route::post('/Werknemers/toevoegen', [App\Http\Controllers\WerknemerController::class, 'Addwerknemer']);
 
 
 Route::get('/werknemer/{id}/products', [App\Http\Controllers\WerknemerController::class, 'showProducts'])->name('werknemer.products');

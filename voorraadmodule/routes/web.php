@@ -68,6 +68,12 @@ Route::get('/product-toevoegen-opslag/{id}', [App\Http\Controllers\ItemQuantityI
 Route::post('/product-toevoegen-opslag/{id}', [App\Http\Controllers\ItemQuantityInWarehousesController::class, 'assignProductToWarehouse'])->name('itemquantityinwarehouses.assignProductToWarehouse');
 
 
+// deze zijn van het editen van warehouses
+Route::get('/oplaglocaties/{id}/aanpassen', [App\Http\Controllers\WarehouseController::class, 'edit'])->name('warehouses.edit');
+Route::put('/oplaglocaties/{id}/aanpassen', [App\Http\Controllers\WarehouseController::class, 'update'])->name('warehouses.update');
+
+
+
 Route::get('/producten-zoeken-bij-opslag/', [App\Http\Controllers\ProductenZoekenBijOpslaglocatiesController::class, 'search'])->name('ItemQuantityInWarehouses.search');
 
 Route::get('/logs', [App\Http\Controllers\LoggerController::class, 'index'])->name('logger.index');

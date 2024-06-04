@@ -20,5 +20,26 @@ class WarehouseController extends Controller
         return view('warehouses.ShowWareHouseProducts', compact('warehouse', 'products'));
     }
 
-    
+
+    // this is the get(/oplaglocaties/{id}/aanpassen)
+    public function edit($id)
+    {
+        $warehouse = Warehouse::findOrFail($id);
+        return view('warehouses.EditWarehouse', compact('warehouse'));
+    }
+
+    // this is the get(/oplaglocaties/{id}/aanpassen)
+    public function update(Request $request, int $id)
+    {
+        $warehouse = Warehouse::findOrFail($id);
+        $request->validate([
+            'naam' => 'required|string',
+            'straat' => 'required|string',
+            'housenumber' => 'required|string',
+            'category' => 'required'
+        ]);
+
+    }
+
+
 }

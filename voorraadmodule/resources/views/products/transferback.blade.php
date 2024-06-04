@@ -1,15 +1,23 @@
 @extends('layouts.master')
 
 @section('content')
-<h1>Product Details</h1>
-<p>Product Number: {{ $product->productnummer }}</p>
-<p>Name: {{ $product->name }}</p>
-<p>Description: {{ $product->description }}</p>
-<p>Category: {{ $product->category }}</p>
 
-<h2>Quantities in Warehouses</h2>
-@foreach($product->warehouses as $warehouse)
-    <p>Warehouse ID: {{ $warehouse->id }}</p>
-    <p>Quantity: {{ $warehouse->pivot->quantity }}</p>
-@endforeach
+<form action="" method="POST">
+    @csrf
+
+    <label for="warehouse">Choose a Warehouse:</label>
+    <select name="warehouse_id" id="warehouse">
+        @foreach($warehouses as $warehouse)
+            <option value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
+        @endforeach
+    </select>
+
+    <label for="quantity">Enter Quantity:</label>
+    <input type="number" name="quantity" id="quantity" min="1" required>
+
+    <!-- Include other form fields as needed -->
+
+    <input type="submit" value="Transfer Product">
+</form>
+
 @endsection

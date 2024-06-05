@@ -15,7 +15,7 @@
     @endif
 
 
-    <form action="{{ route('products.index') }}" method="POST">
+    <form action="{{ route('products.selectWarehouse') }}">
         @csrf
         <input type="hidden" name="werknemer_id" value="{{ $werknemerId }}">
 

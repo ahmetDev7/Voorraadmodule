@@ -36,7 +36,6 @@ nav ul {
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 70px;
-    color: gray;
     display: flex;
 }
 
@@ -131,7 +130,6 @@ nav ul li a:hover {
     width: 500px;
     margin-left: auto;
     margin-right: auto;
-    color: gray;
 }
 
 .default-form label {

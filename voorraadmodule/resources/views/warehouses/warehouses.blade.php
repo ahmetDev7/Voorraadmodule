@@ -61,7 +61,8 @@
             <td class="px-4 py-4">{{$w->city}}</td>
             <td class="px-4 py-4">{{$w->country}}</td>
             <td class="px-4 py-4">
-            <a href="{{ route('warehouses.show', $w->id) }}" class="small-button-2"> <!-- Add the small-button class to the anchor tag -->
+            
+            <a href="{{ route('warehouses.show', $w->id) }}" class="small-button-2"> 
                   <img id="logo" src="{{url('/images/info-icon.png')}}">
                 </a>
             <a href="{{ route('warehouses.edit', $w->id) }}" class="small-button">

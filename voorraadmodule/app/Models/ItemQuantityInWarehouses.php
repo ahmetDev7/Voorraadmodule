@@ -17,4 +17,10 @@ class ItemQuantityInWarehouses extends Model
         'warehouse_id',
         'quantity'
     ];
+
+    public function iteminwarehouse()
+    {
+        return $this->belongsToMany(ItemQuantityInWarehouses::class, 'warehouse_id', 'product_id')
+                    ->withPivot('quantity');
+    }
 }

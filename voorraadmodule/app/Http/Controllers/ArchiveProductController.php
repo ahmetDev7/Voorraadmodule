@@ -9,36 +9,51 @@ use App\Models\Product;
 
 class ArchiveProductController extends Controller
 {
-    public function index()
+    public function archive($id)
     {
-        return view('products.archive');
-    }
+        $product = Product::find($id);
 
-    public function archive(Request $request)
-    {
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found.');
+        }
 
-        // Validate the request
-        $request->validate([
-            'productnummer' => 'required|exists:products,productnummer',
-        ]);
-
-        // Retrieve the product by serialnumber
-        $product = Product::where('productnummer', $request->input('productnummer'))->firstOrFail();
-
-        // Create a new archived product record
         ArchivedProduct::create([
-            'serialnumber' => $product->productnummer,
+            'productnummer' => $product->productnummer,
             'name' => $product->name,
             'description' => $product->description,
-            'category' => $product->category,
-            'warehouse_id' => $product->warehouse_id,
+            'category' => $product->category
         ]);
 
-        // Delete the product from the main products table
         $product->delete();
 
-        // Redirect back with a success message
-        return redirect()->back()->with('success', 'Product has been archived successfully!');
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
+
+    public function archiveReverse($id)
+    {
+        $ArchivedProduct = ArchivedProduct::find($id);
+
+        if (!$ArchivedProduct) {
+            return redirect()->back()->with('error', 'Product not found.');
+        }
+
+        Product::create([
+            'productnummer' => $ArchivedProduct->productnummer,
+            'name' => $ArchivedProduct->name,
+            'description' => $ArchivedProduct->description,
+            'category' => $ArchivedProduct->category
+        ]);
+
+        $ArchivedProduct->delete();
+
+        return redirect()->route('products.list')->with('success', 'Product deleted successfully.');
+    }
+
+    public function archief()
+    {
+        $products = ArchivedProduct::all();
+        return view('products.archief', compact('products'));
+    }
+
 
 }

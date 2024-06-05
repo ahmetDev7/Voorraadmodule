@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     // Define the relationship with Werknemer
+    protected $fillable = [
+        'productnummer',
+        'name',
+        'description',
+        'category',
+        'warehouse_id',
+    ];
     public function werknemers()
     {
         return $this->belongsToMany(Werknemer::class, 'werknemer_product')
@@ -19,9 +26,10 @@ class Product extends Model
         return $this->belongsToMany(Warehouse::class, 'item_quantity_in_warehouses', 'product_id', 'warehouse_id')
                     ->withPivot('quantity');
     }
-    public function getTotalQuantityAttribute()
+
+    public function warehouses1()
     {
-        return $this->warehouses->sum('pivot.quantity');
+        return $this->belongsToMany(Warehouse::class, 'item_quantity_in_warehouses', 'product_id', 'warehouse_id');
     }
 
 }

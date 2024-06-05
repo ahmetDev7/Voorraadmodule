@@ -15,4 +15,5 @@ class werknemer_product extends Model
         'product_id',
         'quantity'
     ];
+
 }

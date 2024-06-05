@@ -51,6 +51,8 @@
                         <th class="px-4 py-2 " style="background-color:#f8f8f8">Beschrijving</th>
                         <th class="px-4 py-2 " style="background-color:#f8f8f8">Categorie</th>
                         <th class="px-4 py-2 " style="background-color:#f8f8f8">quantity</th>
+                        <th class="px-4 py-2 " style="background-color:#f8f8f8">Acties</th>
+
 
 
                         <!-- <th class="px-4 py-2 " style="background-color:#f8f8f8">Acties</th> -->
@@ -64,8 +66,11 @@
                                         <td class="px-4 py-4">{{$p->description}}</td>
                                         <td class="px-4 py-4">{{$p->category}}</td>
                                         <td class="px-4 py-4">{{ $p->pivot->quantity }}</td>
-
                                         <td class="px-4 py-4">
+                                            <a href="{{ route('products.transfer', ['werkid' => $werknemer->id, 'productid' => $p->id]) }}"
+                                                class="small-add-button">
+                                                <p>overdraag product terug</p>
+                                            </a>
 
                         </div>
                         </a>

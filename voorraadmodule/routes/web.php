@@ -5,20 +5,6 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ArchiveProductController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('home');
-// });
-
-// Route::get('/producten/', [ProductController::class, 'index'])->name('products.index');
-// Route::get('/products/{id}/delete', [ProductController::class, 'delete'])->name('products.delete');
-// Route::get('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'index'])->name('products.index');
-// Route::post('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'add'])->name('products.add');
-// Route::get('/producten/archiveren', [App\Http\Controllers\ArchiveProductController::class, 'index'])->name('products.index');
-// Route::post('/producten/archiveren', [App\Http\Controllers\ArchiveProductController::class, 'archive'])->name('products.archive');
-// Route::get('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductController::class, 'edit'])->name('products.edit');
-// Route::put('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductController::class, 'update'])->name('products.update');
-
-
 Route::get('/', function () {
     return view('home');
 });
@@ -40,10 +26,6 @@ Route::get('/products/select-warehouse', [AddProductWerknemerController::class, 
 Route::post('/products', [AddProductWerknemerController::class, 'store'])->name('products.store');
 
 Route::get('/werknemer/{id}/producten', [App\Http\Controllers\WerknemerController::class, 'showProducts'])->name('werknemer.products');
-
-
-
-
 
 Route::get('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductController::class, 'edit'])->name('products.edit');
 Route::put('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductController::class, 'update'])->name('products.update');
@@ -82,3 +64,7 @@ Route::put('/oplaglocaties/{id}/aanpassen', [App\Http\Controllers\WarehouseContr
 Route::get('/producten-zoeken-bij-opslag/', [App\Http\Controllers\ProductenZoekenBijOpslaglocatiesController::class, 'search'])->name('ItemQuantityInWarehouses.search');
 
 Route::get('/logs', [App\Http\Controllers\LoggerController::class, 'index'])->name('logger.index');
+
+
+Route::get('/werknemer/{werkid}/{productid}/overdraag', [App\Http\Controllers\TransferToWarehouseController::class, 'index'])->name('products.transfer');
+Route::post('/werknemer/overdraag', [App\Http\Controllers\TransferToWarehouseController::class, 'transfer'])->name('product.done');

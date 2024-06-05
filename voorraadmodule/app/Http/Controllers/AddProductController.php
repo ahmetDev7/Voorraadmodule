@@ -12,7 +12,6 @@ class AddProductController extends Controller
     public function index()
     {
         $warehouses = Warehouse::all();
-        // Pass the warehouses to the view
         return view('products.add', compact('warehouses'));
     }
     public function indexForEmployee()

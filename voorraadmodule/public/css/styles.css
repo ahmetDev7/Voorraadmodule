@@ -5,6 +5,11 @@ body {
     color:black;
 }
 
+.wide-input {
+    width: 60px;
+}
+
+
 .container {
     display: flex;
     margin: auto;
@@ -52,6 +57,17 @@ nav ul li a:hover {
     display: inline-flex;
     height: 50px;
     width: 200px;
+    background-color: green;
+    border-radius: 25px;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.small-add-button {
+    display: inline-flex;
+    height: 50px;
+    width: 100px;
     background-color: green;
     border-radius: 25px;
     color: white;

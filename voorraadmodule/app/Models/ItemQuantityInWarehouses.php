@@ -14,8 +14,7 @@ class ItemQuantityInWarehouses extends Model
         'id',
         'product_id',
         'serial_number_id',
-        'warehouse_id',
-        'quantity'
+        'warehouse_id'
     ];
 
     public function iteminwarehouse()

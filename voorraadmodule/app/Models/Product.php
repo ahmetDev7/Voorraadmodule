@@ -21,15 +21,26 @@ class Product extends Model
             ->withTimestamps();
     }
 
+    public function serialNumbers()
+    {
+        return $this->hasMany(ProductSerialNumber::class);
+    }
+
+    public function getSerialNumberCountAttribute()
+    {
+        return $this->serialNumbers()->count();
+    }
+
+
+
     public function warehouses()
     {
         return $this->belongsToMany(Warehouse::class, 'item_quantity_in_warehouses', 'product_id', 'warehouse_id')
-                    ->withPivot('quantity');
+            ->withPivot('quantity');
     }
 
     public function warehouses1()
     {
         return $this->belongsToMany(Warehouse::class, 'item_quantity_in_warehouses', 'product_id', 'warehouse_id');
     }
-
 }

@@ -31,6 +31,8 @@ Route::get('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductContr
 Route::put('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductController::class, 'update'])->name('products.update');
 Route::get('/producten/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
+Route::get('/producten/toevoegen/serialnummer', [App\Http\Controllers\AddSerialnumbersToProductController::class, 'showAddSerialForm'])->name('products.addSerial');
+Route::post('/producten/toevoegen/serialnummer', [App\Http\Controllers\AddSerialnumbersToProductController::class, 'addSerial'])->name('products.addSerial');
 
 Route::get('/archief', [ArchiveProductController::class, 'archief'])->name('products.list');
 // Route::get('/producten/archief', [ArchiveProductController::class, 'archief'])->name('products.unarchive');

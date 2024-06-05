@@ -4,6 +4,7 @@
 
 <div class="producten-pagina">
   <h1>PRODUCTEN PAGINA</h1>
+
   <a href="/producten/toevoegen" class="add-button">
     <p>Product toevoegen</p>
   </a>
@@ -60,40 +61,38 @@
           </tr>
         </thead>
         <tbody class="text-sm font-normal text-gray-700">
-          @forelse($products as $p)
-        <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
-        <td class="px-4 py-4">{{$p->productnummer}}</td>
-        <td class="px-4 py-4">{{$p->name}}</td>
-        <td class="px-4 py-4">{{$p->description}}</td>
-        <td class="px-4 py-4">{{$p->category}}</td>
-        <td class="px-4 py-4">{{$p->total_quantity}}</td>
-        <td class="px-4 py-4">
-          <a href="{{ route('products.edit', $p->id) }}" class="small-button">
-          <img id="logo" src="{{url('/images/edit-icon.png')}}">
-          </a>
-          <a href="{{ route('products.archive', $p->id) }}" class="small-button"
-          onclick="confirmationArchive(event)">
-          <img id="logo" src="{{url('/images/Archive-Button.png')}}">
-          </a>
-          <a href="{{ route('itemquantityinwarehouses.showAssignForm', $p->id) }}" class="small-button">
-          <img id="logo" src="{{url('/images/warehouse2.png')}}">
-          </a>
-          <a href="{{ route('products.show', $p->id) }}" class="small-button-2">
-          <!-- Add the small-button class to the anchor tag -->
-          <img id="logo" src="{{url('/images/info-icon.png')}}">
-          </a>
-        </td>
-        </tr>
-      @empty
-      <tr>
-      <td colspan="8" class="px-4 py-4 list-group-item-danger">Product bestaat niet.</td>
-      </tr>
-    @endforelse
-        </tbody>
-      </table>
-    </div>
-    <div id="pagination" class="w-full flex justify-center border-t border-gray-100 pt-4 items-center">
-
+        @forelse($products as $p)
+            <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
+              <td class="px-4 py-4">{{$p->productnummer}}</td>
+              <td class="px-4 py-4">{{$p->name}}</td>
+              <td class="px-4 py-4">{{$p->description}}</td>
+              <td class="px-4 py-4">{{$p->category}}</td>
+              <td class="px-4 py-4">{{$p->serial_number_count}}</td>
+              <td class="px-4 py-4">
+                <a href="{{ route('products.edit', $p->id) }}" class="small-button">
+                  <img id="logo" src="{{url('/images/edit-icon.png')}}">
+                </a>
+                <a href="{{ route('products.archive', $p->id) }}" class="small-button" onclick="confirmationArchive(event)">
+                  <img id="logo" src="{{url('/images/Archive-Button.png')}}">
+                </a>
+                <a href="{{ route('itemquantityinwarehouses.showAssignForm', $p->id) }}" class="small-button">
+                  <img id="logo" src="{{url('/images/warehouse2.png')}}">
+                </a>
+                <a href="{{ route('products.show', $p->id) }}" class="small-button-2"> <!-- Add the small-button class to the anchor tag -->
+                  <img id="logo" src="{{url('/images/info-icon.png')}}">
+                </a>
+                
+              </td>
+            </tr>
+            @empty
+            <tr>
+                <td colspan="8" class="px-4 py-4 list-group-item-danger">geen producten.</td>
+            </tr>
+        @endforelse
+    </tbody>
+    </table>
+  </div>
+  <div id="pagination" class="w-full flex justify-center border-t border-gray-100 pt-4 items-center">
       <svg class="h-6 w-6" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g opacity="0.4">
           <path fill-rule="evenodd" clip-rule="evenodd"

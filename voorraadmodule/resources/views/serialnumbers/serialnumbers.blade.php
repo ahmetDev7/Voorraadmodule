@@ -16,7 +16,6 @@
   <div class="bg-white pb-4 px-4 rounded-md w-full"
     style="width:1000px; margin-left:auto; margin-right:auto; margin-top:50px;">
     <div class="flex justify-between w-full pt-6 ">
-      <p class="ml-3"> Users Table</p>
       <svg width="14" height="4" viewBox="0 0 14 4" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g opacity="0.4">
           <circle cx="2.19796" cy="1.80139" r="1.38611" fill="#222222" />
@@ -55,17 +54,25 @@
             <th class="px-4 py-2 " style="background-color:#f8f8f8">Acties</th>
           </tr>
         </thead>
+
         <tbody class="text-sm font-normal text-gray-700">
-            <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
-              <td class="px-4 py-4">XJJD-8943</td>
-              <td class="px-4 py-4">Pomp</td>
-              <td class="px-4 py-4">Dit is een pomp</td>
-              <td class="px-4 py-4">Waterpompen</td>
+        @forelse($serienummers as $s)  
+          <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
+              <td class="px-4 py-4">{{$s->serialnumber}}</td>
+              <td class="px-4 py-4">{{$s->product->name}}</td>
+              <td class="px-4 py-4">{{$s->product->description}}</td>
+              <td class="px-4 py-4">{{$s->product->category}}</td>
+              <td class="px-4 py-4">
+                <a href="{{ route('serialnumbers.delete', $s->id) }}" class="small-button">
+                  <img id="logo" src="{{url('/images/Archive-Button.png')}}">
+                </a>
+              </td>
             </tr>
-            <!-- Empty -->
-            <!-- <tr>
-                <td colspan="8" class="px-4 py-4 list-group-item-danger">geen producten.</td>
-            </tr> -->
+            @empty
+            <tr>
+                <td colspan="8" class="px-4 py-4 list-group-item-danger">Er zijn geen serienummers aanwezig.</td>
+            </tr>
+        @endforelse
     </tbody>
     </table>
   </div>

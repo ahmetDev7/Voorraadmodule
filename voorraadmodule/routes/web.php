@@ -81,4 +81,5 @@ Route::post('/werknemer/overdraag', [App\Http\Controllers\TransferToWarehouseCon
 // Serienummers pagina
 Route::get('/serienummers', [SerialnumberController::class, 'index'])->name('serialnumbers.index');
 Route::get('/serienummers/toevoegen', [AddSerialnumbersToProductController::class, 'index'])->name('addserialnumbers.index');
-Route::post('/serienumers/toevoegen', [AddSerialnumbersToProductController::class, 'addSerialNumbertoProduct'])->name('addserialnumbers.add');
+Route::post('/serienummers/toevoegen', [AddSerialnumbersToProductController::class, 'addSerialNumbertoProduct'])->name('addserialnumbers.add');
+Route::get('/serienummers/verwijderen/{id}', [SerialnumberController::class, 'deleteSerialnumber'])->name('serialnumbers.delete');

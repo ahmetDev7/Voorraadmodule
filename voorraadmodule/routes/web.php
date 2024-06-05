@@ -33,10 +33,10 @@ Route::post('/producten/toevoegen', [App\Http\Controllers\AddProductController::
 
 Route::get('/werknemers/producten/toevoegen/{werknemerId}', [App\Http\Controllers\AddProductWerknemerController::class, 'index']);
 Route::post('/werknemers/producten/toevoegen/{werknemerId}', [App\Http\Controllers\AddProductWerknemerController::class, 'store'])->name('submit.form');
-
 Route::post('/products/select', [AddProductWerknemerController::class, 'index1']);
 Route::get('/products/select/{werknemerId}', [AddProductWerknemerController::class, 'select'])->name('products.select');
 Route::get('/products/select-warehouse', [AddProductWerknemerController::class, 'selectWarehouse'])->name('products.selectWarehouse');
+//what?
 Route::post('/products', [AddProductWerknemerController::class, 'store'])->name('products.store');
 
 Route::get('/werknemer/{id}/producten', [App\Http\Controllers\WerknemerController::class, 'showProducts'])->name('werknemer.products');
@@ -58,7 +58,8 @@ Route::get('/producten/archive-reverse/{id}', [ArchiveProductController::class, 
 // toevoegen van de werknemers
 Route::get('/werknemers/toevoegen', [App\Http\Controllers\WerknemerController::class, 'addView'])->name('werknemers.toevoegen');
 Route::post('/werknemers/toevoegen', [App\Http\Controllers\WerknemerController::class, 'Addwerknemer']);
-
+//verwijderen van de werknemers
+Route::get('/werknemers/verwijderen/{id}', [App\Http\Controllers\DeleteEmployeeController::class, 'Deletewerknemer'])->name('werknemers.delete');
 
 
 Route::get('/opslaglocaties/', [App\Http\Controllers\WarehouseController::class, 'index']);

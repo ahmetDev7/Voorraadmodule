@@ -5,17 +5,6 @@
     <h1>{{ $product->name }}</h1>
 
     <div class="bg-white pb-4 px-4 rounded-md w-full" style="width:1000px; margin-left:auto; margin-right:auto; margin-top:50px;">
-        <div class="flex justify-between w-full pt-6 ">
-            <p class="ml-3"> Users Table</p>
-
-            <svg width="14" height="4" viewBox="0 0 14 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g opacity="0.4">
-                    <circle cx="2.19796" cy="1.80139" r="1.38611" fill="#222222" />
-                    <circle cx="11.9013" cy="1.80115" r="1.38611" fill="#222222" />
-                    <circle cx="7.04991" cy="1.80115" r="1.38611" fill="#222222" />
-                </g>
-            </svg>
-        </div>
         <div class="w-full flex justify-end px-2 mt-2">
             <div class="w-full sm:w-64 inline-block relative ">
                 <input type="" name="" class="leading-snug border border-gray-300 block w-full appearance-none bg-gray-100 text-sm text-gray-600 py-1 px-4 pl-8 rounded-lg" placeholder="Zoeken" />

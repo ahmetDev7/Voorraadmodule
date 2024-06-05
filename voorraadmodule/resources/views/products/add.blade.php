@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="producten-pagina">
-    <h1>PRODUCT TOEVOEGEN</h1>
+    <h1>Product toevoegen</h1>
     <form class="default-form" action="{{ route('products.add') }}" method="post">
         @csrf
         <label>Productnummer</label>

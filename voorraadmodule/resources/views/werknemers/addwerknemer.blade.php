@@ -10,12 +10,12 @@
         @if ($errors->has('name'))
         <p style="color:#FF0000;">{{ $errors->first('name') }}</p>
         @endif
-        <label>email</label>
+        <label>Email</label>
         <textarea type="text" name="email" value=""></textarea>
         @if ($errors->has('email'))
         <p style="color:#FF0000;">{{ $errors->first('description') }}</p>
         @endif
-        <label>functie</label>
+        <label>Functie</label>
         <input type="text" name="functie" value="">
         @if ($errors->has('functie'))
         <p style="color:#FF0000;">{{ $errors->first('category') }}</p>

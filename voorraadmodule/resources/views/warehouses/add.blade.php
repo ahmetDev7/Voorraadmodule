@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="producten-pagina">
-    <h1>OPSLAGLOCATIE TOEVOEGEN</h1>
+    <h1>Opslaglocatie toevoegen</h1>
     <form class="default-form" action="{{ route('warehouses.add') }}" method="post">
         @csrf
         <label>Naam</label>

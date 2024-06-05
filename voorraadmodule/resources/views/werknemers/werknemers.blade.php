@@ -60,10 +60,13 @@
                             <td class="px-4 py-4">{{$w->email}}</td>
                             <td class="px-4 py-4">{{$w->functie}}</td>
                             <td class="px-4 py-4">
-                                <a href="{{ route('werknemer.products', $w->id) }}" class="small-button">
-                                    <img id="logo" src="{{ url('/images/edit-icon.png') }}" alt="Edit Icon">
+                                <a href="{{ route('werknemer.products', $w->id) }}" class="small-button-2">
+                                    <img id="logo" src="{{ url('/images/info-icon.png') }}" alt="Edit Icon">
                                 </a>
 
+                                <a href="{{ route('werknemer.aanpassen', $w->id) }}" class="small-button">
+                                    <img id="logo" src="{{ url('/images/edit-icon.png') }}" alt="Edit Icon">
+                                </a>
                             </td>
                         </tr>
                     @endforeach

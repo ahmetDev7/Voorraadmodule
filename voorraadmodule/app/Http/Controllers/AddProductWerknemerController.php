@@ -21,7 +21,7 @@ class AddProductWerknemerController extends Controller
 
 
 //dit pakt alle unieke productID's en doet een findmany met productselect
-        $validProductIDs = ItemQuantityInWarehouses::Select('product_id')->distinct();
+        $validProductIDs = ItemQuantityInWarehouses::Select('product_id')->distinct()->pluck('product_id');
         $productsSelect = Product::findMany($validProductIDs);
 
 //dit kiest het product

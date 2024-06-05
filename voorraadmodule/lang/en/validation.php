@@ -133,7 +133,7 @@ return [
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
     'prohibits' => 'The :attribute field prohibits :other from being present.',
     'regex' => 'Een :attribute mag alleen cijfers, letters of - bevatten en moet eindigen met een cijfer of letter.',
-    'required' => 'Deze veld mag niet leeg zijn.',
+    'required' => 'Deze veld :attribute mag niet leeg zijn.',
     'required_array_keys' => 'The :attribute field must contain entries for: :values.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_if_accepted' => 'The :attribute field is required when :other is accepted.',

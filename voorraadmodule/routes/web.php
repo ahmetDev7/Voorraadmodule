@@ -58,7 +58,10 @@ Route::get('/producten/archive-reverse/{id}', [ArchiveProductController::class, 
 // toevoegen van de werknemers
 Route::get('/werknemers/toevoegen', [App\Http\Controllers\WerknemerController::class, 'addView'])->name('werknemers.toevoegen');
 Route::post('/werknemers/toevoegen', [App\Http\Controllers\WerknemerController::class, 'Addwerknemer']);
-//verwijderen van de werknemers
+// aanpassen van de werknemers
+Route::get('/werknemers/aanpassen/{id}', [App\Http\Controllers\WerknemerController::class, 'EditEmployeePage'])->name('werknemer.aanpassen');
+Route::post('/werknemers/aanpassen/{id}', [App\Http\Controllers\WerknemerController::class, 'EditEmployeeActual']);//verwijderen van de werknemers
+// verwijderen van de werknemers
 Route::get('/werknemers/verwijderen/{id}', [App\Http\Controllers\DeleteEmployeeController::class, 'Deletewerknemer'])->name('werknemers.delete');
 
 

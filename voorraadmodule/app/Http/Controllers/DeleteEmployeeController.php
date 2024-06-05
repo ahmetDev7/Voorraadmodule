@@ -9,7 +9,7 @@ use App\Models\werknemer_product;
 class DeleteEmployeeController extends Controller
 {
     // Deze is de get(/werknemers/verwijderen/{id})
-    public function Deletewerknemer(Request $request, int $id)
+    public function Deletewerknemer(int $id)
     {
         $employee = Werknemer::find($id);
 

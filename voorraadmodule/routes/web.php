@@ -47,6 +47,9 @@ Route::post('/werknemers/aanpassen/{id}', [App\Http\Controllers\WerknemerControl
 Route::get('/werknemers/verwijderen/{id}', [App\Http\Controllers\DeleteEmployeeController::class, 'Deletewerknemer'])->name('werknemers.delete');
 
 
+Route::get('/werknemer/{id}/products', [App\Http\Controllers\WerknemerController::class, 'showProducts'])->name('werknemer.products');
+Route::get('/werknemer/search', [App\Http\Controllers\WerknemerSearchController::class, 'search'])->name('werknemer.search');
+
 Route::get('/opslaglocaties/', [App\Http\Controllers\WarehouseController::class, 'index']);
 Route::get('/opslaglocaties/toevoegen', [App\Http\Controllers\AddWarehousesController::class, 'index'])->name('warehouses.index');
 Route::post('/opslaglocaties/toevoegen', [App\Http\Controllers\AddWarehousesController::class, 'add'])->name('warehouses.add');

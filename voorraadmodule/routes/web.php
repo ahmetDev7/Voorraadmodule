@@ -8,10 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SerialnumberController;
 use App\Http\Controllers\AddSerialnumbersToProductController;
 
-Route::get('/', function () {
-    return view('home');
-});
-
+Route::get('/', [ProductController::class, 'index']);
 Route::get('/producten/', [ProductController::class, 'index'])->name('products.index');
 Route::get('/werknemers/', [App\Http\Controllers\WerknemerController::class, 'index'])->name('werknemers.index');
 

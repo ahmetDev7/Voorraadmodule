@@ -8,6 +8,7 @@ use App\Models\Werknemer;
 use App\Models\Product;
 use App\Models\Warehouse;
 use App\Models\ItemQuantityInWarehouses;
+use App\Services\Logger;
 
 class AddProductWerknemerController extends Controller
 {
@@ -132,6 +133,8 @@ class AddProductWerknemerController extends Controller
             $werknemer->products()->updateExistingPivot($productID, ['quantity' => $newQuantity]);
         }
 
+
+        dd("test");
 
         return redirect()->to(url('/werknemer/' . $werknemerID . '/producten'))->with('success', 'Product updated successfully!');
 

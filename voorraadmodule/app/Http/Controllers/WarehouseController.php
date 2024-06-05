@@ -15,9 +15,12 @@ class WarehouseController extends Controller
 
     public function show($id)
     {
-        $warehouse = Warehouse::findOrFail($id);
-        $products = $warehouse->products()->withPivot('quantity')->get();
-        return view('warehouses.ShowWareHouseProducts', compact('warehouse', 'products'));
+        $warehouse = Warehouse::with(['products' => function ($query) {
+            $query->withCount('serialNumbers');
+        }])->findOrFail($id);
+
+
+        return view('warehouses.ShowWareHouseProducts', compact('warehouse'));
     }
 
 
@@ -51,8 +54,5 @@ class WarehouseController extends Controller
         $warehouse->save();
 
         return redirect()->back()->with('success', 'Opslaglocatie is succesvol bijgewerkt!');
-
     }
-
-
 }

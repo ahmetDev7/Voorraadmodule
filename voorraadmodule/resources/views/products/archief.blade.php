@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="producten-pagina">
-    <h1>ARCHIEF PAGINA</h1>
+    <h1>Archief</h1>
 
 
     <!-- Adding a bit of space -->

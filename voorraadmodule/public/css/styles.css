@@ -285,3 +285,8 @@ input::placeholder{
 select{
     padding:13px !important;
 }
+
+td{
+    text-align:center !important;
+    padding-top:5px;
+}

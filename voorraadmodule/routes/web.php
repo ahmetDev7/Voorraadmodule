@@ -46,8 +46,6 @@ Route::post('/werknemers/aanpassen/{id}', [App\Http\Controllers\WerknemerControl
 // verwijderen van de werknemers
 Route::get('/werknemers/verwijderen/{id}', [App\Http\Controllers\DeleteEmployeeController::class, 'Deletewerknemer'])->name('werknemers.delete');
 
-
-Route::get('/werknemer/{id}/products', [App\Http\Controllers\WerknemerController::class, 'showProducts'])->name('werknemer.products');
 Route::get('/werknemer/search', [App\Http\Controllers\WerknemerSearchController::class, 'search'])->name('werknemer.search');
 
 Route::get('/opslaglocaties/', [App\Http\Controllers\WarehouseController::class, 'index']);

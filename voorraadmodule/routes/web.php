@@ -33,10 +33,10 @@ Route::post('/producten/toevoegen', [App\Http\Controllers\AddProductController::
 
 Route::get('/werknemers/producten/toevoegen/{werknemerId}', [App\Http\Controllers\AddProductWerknemerController::class, 'index']);
 Route::post('/werknemers/producten/toevoegen/{werknemerId}', [App\Http\Controllers\AddProductWerknemerController::class, 'store'])->name('submit.form');
-
 Route::post('/products/select', [AddProductWerknemerController::class, 'index1']);
 Route::get('/products/select/{werknemerId}', [AddProductWerknemerController::class, 'select'])->name('products.select');
 Route::get('/products/select-warehouse', [AddProductWerknemerController::class, 'selectWarehouse'])->name('products.selectWarehouse');
+//what?
 Route::post('/products', [AddProductWerknemerController::class, 'store'])->name('products.store');
 
 Route::get('/werknemer/{id}/producten', [App\Http\Controllers\WerknemerController::class, 'showProducts'])->name('werknemer.products');
@@ -58,7 +58,11 @@ Route::get('/producten/archive-reverse/{id}', [ArchiveProductController::class, 
 // toevoegen van de werknemers
 Route::get('/werknemers/toevoegen', [App\Http\Controllers\WerknemerController::class, 'addView'])->name('werknemers.toevoegen');
 Route::post('/werknemers/toevoegen', [App\Http\Controllers\WerknemerController::class, 'Addwerknemer']);
-
+// aanpassen van de werknemers
+Route::get('/werknemers/aanpassen/{id}', [App\Http\Controllers\WerknemerController::class, 'EditEmployeePage'])->name('werknemer.aanpassen');
+Route::post('/werknemers/aanpassen/{id}', [App\Http\Controllers\WerknemerController::class, 'EditEmployeeActual']);//verwijderen van de werknemers
+// verwijderen van de werknemers
+Route::get('/werknemers/verwijderen/{id}', [App\Http\Controllers\DeleteEmployeeController::class, 'Deletewerknemer'])->name('werknemers.delete');
 
 
 Route::get('/opslaglocaties/', [App\Http\Controllers\WarehouseController::class, 'index']);
@@ -67,6 +71,12 @@ Route::post('/opslaglocaties/toevoegen', [App\Http\Controllers\AddWarehousesCont
 Route::get('/opslaglocaties/{id}', [App\Http\Controllers\WarehouseController::class, 'show'])->name('warehouses.show');
 Route::get('/product-toevoegen-opslag/{id}', [App\Http\Controllers\ItemQuantityInWarehousesController::class, 'showAssignForm'])->name('itemquantityinwarehouses.showAssignForm');
 Route::post('/product-toevoegen-opslag/{id}', [App\Http\Controllers\ItemQuantityInWarehousesController::class, 'assignProductToWarehouse'])->name('itemquantityinwarehouses.assignProductToWarehouse');
+
+
+// deze zijn van het editen van warehouses
+Route::get('/oplaglocaties/{id}/aanpassen', [App\Http\Controllers\WarehouseController::class, 'edit'])->name('warehouses.edit');
+Route::put('/oplaglocaties/{id}/aanpassen', [App\Http\Controllers\WarehouseController::class, 'update'])->name('warehouses.update');
+
 
 
 Route::get('/producten-zoeken-bij-opslag/', [App\Http\Controllers\ProductenZoekenBijOpslaglocatiesController::class, 'search'])->name('ItemQuantityInWarehouses.search');

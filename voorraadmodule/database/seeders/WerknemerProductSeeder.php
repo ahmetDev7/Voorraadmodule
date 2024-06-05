@@ -18,7 +18,6 @@ class WerknemerProductSeeder extends Seeder
             'name' => 'Product 1',
             'description' => 'niet van toepassing',
             'category' => 'Gereedschap',
-            'warehouse_id' => 1
         ]);
 
         $product2 = Product::create([
@@ -26,7 +25,6 @@ class WerknemerProductSeeder extends Seeder
             'name' => 'Product 2',
             'description' => 'niet van toepassing',
             'category' => 'Gereedschap',
-            'warehouse_id' => 1
         ]);
 
         $werknemer1->products()->attach($product1->id, ['quantity' => 5]);

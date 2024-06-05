@@ -60,10 +60,16 @@
                             <td class="px-4 py-4">{{$w->email}}</td>
                             <td class="px-4 py-4">{{$w->functie}}</td>
                             <td class="px-4 py-4">
-                                <a href="{{ route('werknemer.products', $w->id) }}" class="small-button">
-                                    <img id="logo" src="{{ url('/images/edit-icon.png') }}" alt="Edit Icon">
+                                <a href="{{ route('werknemer.products', $w->id) }}" class="small-button-2">
+                                    <img id="logo" src="{{ url('/images/info-icon.png') }}" alt="Edit Icon">
                                 </a>
 
+                                <a href="{{ route('werknemer.aanpassen', $w->id) }}" class="small-button">
+                                    <img id="logo" src="{{ url('/images/edit-icon.png') }}" alt="Edit Icon">
+                                </a>
+                                <a href="{{ route('werknemers.delete', $w->id) }}" class="small-button" onclick="confirmationDelete(event)">
+                                    <img id="logo" src="{{url('/images/Archive-Button.png')}}">
+                                  </a>
                             </td>
                         </tr>
                     @endforeach
@@ -126,13 +132,13 @@
 
 
 <script>
-    function confirmationArchive(ev) {
+    function confirmationDelete(ev) {
         ev.preventDefault();
         var urlToRedirect = ev.currentTarget.getAttribute('href');
         console.log(urlToRedirect);
         swal({
-            title: "Are you sure that you want to Archive this product?",
-            text: "",
+            title: "Weet u zeker dat u Deze werknemer wilt verwijderen?",
+            text: "Dit verwijdert ook de producten die ze op dit moment hebben!",
             icon: "warning",
             buttons: true,
             dangerMode: true,

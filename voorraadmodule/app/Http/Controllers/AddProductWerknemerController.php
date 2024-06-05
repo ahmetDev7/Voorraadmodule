@@ -19,8 +19,12 @@ class AddProductWerknemerController extends Controller
 
         $warehouse = Warehouse::all();
 
-        $productsSelect = Product::whereNotNull('warehouse_id')->get();
 
+//dit pakt alle unieke productID's en doet een findmany met productselect
+        $validProductIDs = ItemQuantityInWarehouses::Select('product_id')->distinct();
+        $productsSelect = Product::findMany($validProductIDs);
+
+//dit kiest het product
         return view('werknemers.addproduct', compact('werknemer', 'products', 'warehouse', 'werknemerId', 'productsSelect'));
     }
 

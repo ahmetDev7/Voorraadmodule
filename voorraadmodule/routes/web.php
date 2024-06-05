@@ -5,6 +5,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ArchiveProductController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\SerialnumberController;
+use App\Http\Controllers\AddSerialnumbersToProductController;
+
 Route::get('/', function () {
     return view('home');
 });
@@ -32,7 +35,7 @@ Route::put('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductContr
 Route::get('/producten/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 Route::get('/producten/toevoegen/serialnummer', [App\Http\Controllers\AddSerialnumbersToProductController::class, 'showAddSerialForm'])->name('products.addSerial');
-Route::post('/producten/toevoegen/serialnummer', [App\Http\Controllers\AddSerialnumbersToProductController::class, 'addSerial'])->name('products.addSerial');
+Route::post('/producten/toevoegen/serialnummer', [App\Http\Controllers\AddSerialnumbersToProductController::class, 'addSerial'])->name('products.addSerialForm');
 
 Route::get('/archief', [ArchiveProductController::class, 'archief'])->name('products.list');
 // Route::get('/producten/archief', [ArchiveProductController::class, 'archief'])->name('products.unarchive');
@@ -71,3 +74,12 @@ Route::get('/logs', [App\Http\Controllers\LoggerController::class, 'index'])->na
 // overzetten van producten naar de opslag vanuit de werknemer
 Route::get('/werknemer/{werkid}/{productid}/overdraag', [App\Http\Controllers\TransferToWarehouseController::class, 'index'])->name('products.transfer');
 Route::post('/werknemer/overdraag', [App\Http\Controllers\TransferToWarehouseController::class, 'transfer'])->name('product.done');
+
+
+
+
+// Serienummers pagina
+Route::get('/serienummers', [SerialnumberController::class, 'index'])->name('serialnumbers.index');
+Route::get('/serienummers/toevoegen', [AddSerialnumbersToProductController::class, 'index'])->name('addserialnumbers.index');
+Route::post('/serienummers/toevoegen', [AddSerialnumbersToProductController::class, 'addSerialNumbertoProduct'])->name('addserialnumbers.add');
+Route::get('/serienummers/verwijderen/{id}', [SerialnumberController::class, 'deleteSerialnumber'])->name('serialnumbers.delete');

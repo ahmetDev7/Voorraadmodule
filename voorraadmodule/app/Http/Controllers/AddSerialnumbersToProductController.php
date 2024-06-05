@@ -10,15 +10,32 @@ use App\Models\ProductSerialNumber;
 
 class AddSerialnumbersToProductController extends Controller
 {
-    public function showAddSerialForm()
-    {
-        $products = Product::all(); // Assuming you have a Product model and a products table
-
-        return view('add_serial_form', compact('products'));
+    public function index(){
+        $products = Product::all();
+        return view('serialnumbers.add', compact('products'));
     }
 
-    public function addSerial(Request $request)
+    public function addSerialNumbertoProduct(Request $request)
     {
-        // Handle the addition of a new product with a unique serial number here
+            if ($request->filled('existing_product_id')) {
+                // Add serial number to existing product
+                $product = Product::find($request->input('existing_product_id'));
+    
+                $request->validate([
+                    'serialnumber_exist' => 'required',
+                ]);
+    
+                $productSerialNumber = new ProductSerialNumber();
+                $productSerialNumber->product_id = $product->id;
+                $productSerialNumber->serialnumber = $request->input('serialnumber_exist');
+                $productSerialNumber->productnumber = $product->productnummer;
+                $productSerialNumber->save();
+    
+                return redirect()->back()->with('success', 'Serienummer is toegevoegd aan het bestaande product!');
+            } else{
+                return redirect()->back()->with('error', 'Serienummer is niet toegevoegd aan het bestaande product.');
+            }
     }
+
+    
 }

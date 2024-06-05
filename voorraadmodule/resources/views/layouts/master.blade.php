@@ -917,6 +917,9 @@
                 <a href="/producten">Producten</a>
             </li>
             <li>
+                <a href="/serienummers">Serienummers</a>
+            </li>
+            <li>
                 <a href="/werknemers">Werknemers</a>
             </li>
             <li class="dropdown">

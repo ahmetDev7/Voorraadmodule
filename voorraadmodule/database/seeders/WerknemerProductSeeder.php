@@ -14,19 +14,17 @@ class WerknemerProductSeeder extends Seeder
         $werknemer2 = Werknemer::create(['name' => 'Jane Smith', 'email' => 'jane@example.com', 'functie' => 'Monteur']);
 
         $product1 = Product::create([
-            'productnummer' => '001',
+            'productnummer' => '005',
             'name' => 'Product 1',
             'description' => 'niet van toepassing',
             'category' => 'Gereedschap',
-            'warehouse_id' => 1
         ]);
 
         $product2 = Product::create([
-            'productnummer' => '002',
+            'productnummer' => '006',
             'name' => 'Product 2',
             'description' => 'niet van toepassing',
             'category' => 'Gereedschap',
-            'warehouse_id' => 1
         ]);
 
         $werknemer1->products()->attach($product1->id, ['quantity' => 5]);

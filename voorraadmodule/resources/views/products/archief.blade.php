@@ -3,11 +3,8 @@
 @section('content')
 
 <div class="producten-pagina">
-    <h1>De producten van {{ $werknemer->name }} id is ={{ $werknemer->id }}.</h1>
+    <h1>ARCHIEF PAGINA</h1>
 
-    <a href="/werknemers/producten/toevoegen/{{$werknemer->id}}" class="add-button">
-        <p>Product bij {{ $werknemer->name }} plaatsen</p>
-    </a>
 
     <!-- Adding a bit of space -->
     <div style="margin-bottom: 20px;"></div>
@@ -50,28 +47,22 @@
                         <th class="px-4 py-2 " style="background-color:#f8f8f8">Naam</th>
                         <th class="px-4 py-2 " style="background-color:#f8f8f8">Beschrijving</th>
                         <th class="px-4 py-2 " style="background-color:#f8f8f8">Categorie</th>
-                        <th class="px-4 py-2 " style="background-color:#f8f8f8">quantity</th>
                         <th class="px-4 py-2 " style="background-color:#f8f8f8">Acties</th>
-
-
-
-                        <!-- <th class="px-4 py-2 " style="background-color:#f8f8f8">Acties</th> -->
                     </tr>
                 </thead>
                 <tbody class="text-sm font-normal text-gray-700">
-                    @foreach($werknemer->products as $p)
+                    @foreach($products as $p)
                                     <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
                                         <td class="px-4 py-4">{{$p->productnummer}}</td>
                                         <td class="px-4 py-4">{{$p->name}}</td>
                                         <td class="px-4 py-4">{{$p->description}}</td>
                                         <td class="px-4 py-4">{{$p->category}}</td>
-                                        <td class="px-4 py-4">{{ $p->pivot->quantity }}</td>
                                         <td class="px-4 py-4">
-                                            <a href="{{ route('products.transfer', ['werkid' => $werknemer->id, 'productid' => $p->id]) }}"
-                                                class="small-add-button">
-                                                <p>overdraag product terug</p>
-                                            </a>
 
+                                            <a href="{{ route('products.archiveReverse', $p->id) }}" class="small-button"
+                                                onclick="confirmationArchive(event)">
+                                                <img id="logo" src="{{url('/images/Reverse-Button.png')}}">
+                                            </a>
                         </div>
                         </a>
                         </td>
@@ -102,5 +93,62 @@
 
     </div>
 </div>
+
+<style>
+    thead tr th:first-child {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    thead tr th:last-child {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    tbody tr td:first-child {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 0px;
+    }
+
+    tbody tr td:last-child {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 0px;
+    }
+</style>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+    integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script>
+    function confirmationArchive(ev) {
+        ev.preventDefault();
+        var urlToRedirect = ev.currentTarget.getAttribute('href');
+        console.log(urlToRedirect);
+        swal({
+            title: "Weet jij zeker dat je deze product uit de Archief wilt halen?",
+            text: "",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willCancel) => {
+                if (willCancel) {
+
+
+
+                    window.location.href = urlToRedirect;
+
+                }
+
+
+            });
+
+
+    }
+</script>
+
 
 @stop

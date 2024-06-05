@@ -2,7 +2,13 @@ html,
 body {
     background-color: rgb(123, 0, 47);
     height: 100%;
+    color:black;
 }
+
+.wide-input {
+    width: 60px;
+}
+
 
 .container {
     display: flex;
@@ -11,6 +17,11 @@ body {
     height: 100%;
     background-color: rgb(123, 0, 47);
     padding-top: 120px;
+    max-width: 100% !important;
+}
+
+table{
+    color:black;
 }
 
 nav {
@@ -46,6 +57,17 @@ nav ul li a:hover {
     display: inline-flex;
     height: 50px;
     width: 200px;
+    background-color: green;
+    border-radius: 25px;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.small-add-button {
+    display: inline-flex;
+    height: 50px;
+    width: 100px;
     background-color: green;
     border-radius: 25px;
     color: white;

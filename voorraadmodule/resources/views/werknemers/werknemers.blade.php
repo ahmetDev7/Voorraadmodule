@@ -4,8 +4,8 @@
 
 <div class="producten-pagina">
     <h1>WERKNEMERS</h1>
-    <!-- <a href="/producten/toevoegen" class="add-button">
-        <p>Product toevoegen</p> -->
+    <a href="/werknemers/toevoegen" class="add-button">
+        <p>Werknemers toevoegen</p>
     </a>
 
     <!-- Adding a bit of space -->
@@ -119,17 +119,17 @@
 
 
 <script>
-    function confirmationArchive(ev) {
+    function confirmationDelete(ev) {
         ev.preventDefault();
         var urlToRedirect = ev.currentTarget.getAttribute('href');
         console.log(urlToRedirect);
         swal({
-                title: "Are you sure that you want to Archive this product?",
-                text: "",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
+            title: "Weet u zeker dat u deze werknemer wilt verwijderen?",
+            text: "Dit verwijdert ook de producten die ze op dit moment hebben!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
             .then((willCancel) => {
                 if (willCancel) {
 

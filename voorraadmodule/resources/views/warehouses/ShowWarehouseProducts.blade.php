@@ -28,20 +28,20 @@
           </tr>
         </thead>
         <tbody class="text-sm font-normal text-gray-700">
-          <?php
-          $uniqueProducts = [];
-          ?>
-          @foreach($warehouse->products as $product)
-          <?php
-          if (!in_array($product->id, $uniqueProducts)) {
-            $uniqueProducts[] = $product->id;
-          ?>
-            <tr>
-              <td class="border px-4 py-2">{{ $product->name }}</td>
-              <td class="border px-4 py-2">{{ $product->serial_numbers_count }}</td>
-            </tr>
-          <?php } ?>
-          @endforeach
+        <?php
+$uniqueProducts = [];
+?>
+@foreach($products as $product)
+    <?php
+    if (!in_array($product->id, $uniqueProducts)) {
+        $uniqueProducts[] = $product->id;
+    ?>
+    <tr>
+        <td class="border px-4 py-2">{{ $product->name }}</td>
+        <td class="border px-4 py-2">{{ $product->serial_numbers_count }}</td>
+    </tr>
+    <?php } ?>
+@endforeach
 
         </tbody>
       </table>

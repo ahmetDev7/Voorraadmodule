@@ -44,7 +44,7 @@ Route::post('/werknemers/toevoegen', [App\Http\Controllers\WerknemerController::
 Route::get('/werknemers/aanpassen/{id}', [App\Http\Controllers\WerknemerController::class, 'EditEmployeePage'])->name('werknemer.aanpassen');
 Route::post('/werknemers/aanpassen/{id}', [App\Http\Controllers\WerknemerController::class, 'EditEmployeeActual']);//verwijderen van de werknemers
 // verwijderen van de werknemers
-Route::get('/werknemers/verwijderen/{id}', [App\Http\Controllers\DeleteEmployeeController::class, 'Deletewerknemer'])->name('werknemers.delete');
+Route::get('/werknemers/verwijderen/{id}', [App\Http\Controllers\DeleteEmployeeController::class, 'Deletewerknemer'])->name('werknemer.delete');
 
 Route::get('/werknemer/search', [App\Http\Controllers\WerknemerSearchController::class, 'search'])->name('werknemer.search');
 
@@ -66,6 +66,6 @@ Route::get('/producten-zoeken-bij-opslag/', [App\Http\Controllers\ProductenZoeke
 
 Route::get('/logs', [App\Http\Controllers\LoggerController::class, 'index'])->name('logger.index');
 
-
+// overzetten van producten naar de opslag vanuit de werknemer
 Route::get('/werknemer/{werkid}/{productid}/overdraag', [App\Http\Controllers\TransferToWarehouseController::class, 'index'])->name('products.transfer');
 Route::post('/werknemer/overdraag', [App\Http\Controllers\TransferToWarehouseController::class, 'transfer'])->name('product.done');

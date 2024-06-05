@@ -926,9 +926,6 @@
                 </div>
             </li>
             <li>
-                <a>Mijn inventaris</a>
-            </li>
-            <li>
                 <a href="/logs">Logs</a>
             </li>
         </ul>

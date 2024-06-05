@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Warehouse;
+use App\Models\Product;
+
 
 class WarehouseController extends Controller
 {
@@ -15,8 +17,20 @@ class WarehouseController extends Controller
 
     public function show($id)
     {
+        // Find the warehouse by ID
         $warehouse = Warehouse::findOrFail($id);
-        $products = $warehouse->products()->withPivot('quantity')->get();
+    
+        // Get products with their quantities specific to the selected warehouse
+        $products = Product::withCount(['serialNumbers as serial_numbers_count' => function ($query) use ($id) {
+            $query->join('item_quantity_in_warehouses', 'product_serial_numbers.serialnumber', '=', 'item_quantity_in_warehouses.serial_number')
+                  ->where('item_quantity_in_warehouses.warehouse_id', $id);
+        }])
+        ->whereHas('serialNumbers', function ($query) use ($id) {
+            $query->join('item_quantity_in_warehouses', 'product_serial_numbers.serialnumber', '=', 'item_quantity_in_warehouses.serial_number')
+                  ->where('item_quantity_in_warehouses.warehouse_id', $id);
+        })
+        ->get();
+    
         return view('warehouses.ShowWareHouseProducts', compact('warehouse', 'products'));
     }
 
@@ -51,8 +65,5 @@ class WarehouseController extends Controller
         $warehouse->save();
 
         return redirect()->back()->with('success', 'Opslaglocatie is succesvol bijgewerkt!');
-
     }
-
-
 }

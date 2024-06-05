@@ -909,7 +909,7 @@
         <div class="logo-container">
             <a href="/">
                 <img id="logo" src="{{url('/images/white-box.png')}}">
-                <p>Voorraadmodule</p>
+                <p>Voorraad</p>
             </a>
         </div>
         <ul>
@@ -935,6 +935,7 @@
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
     <div class="container">
         @yield('content')
+        <div class="background"></div>
     </div>
 </body>
 

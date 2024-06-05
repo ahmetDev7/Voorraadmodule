@@ -8,10 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SerialnumberController;
 use App\Http\Controllers\AddSerialnumbersToProductController;
 
-Route::get('/', function () {
-    return view('home');
-});
-
+Route::get('/', [ProductController::class, 'index']);
 Route::get('/producten/', [ProductController::class, 'index'])->name('products.index');
 Route::get('/werknemers/', [App\Http\Controllers\WerknemerController::class, 'index'])->name('werknemers.index');
 
@@ -22,7 +19,9 @@ Route::post('/producten/toevoegen', [App\Http\Controllers\AddProductController::
 
 Route::get('/werknemers/producten/toevoegen/{werknemerId}', [App\Http\Controllers\AddProductWerknemerController::class, 'index']);
 Route::post('/werknemers/producten/toevoegen/{werknemerId}', [App\Http\Controllers\AddProductWerknemerController::class, 'store'])->name('submit.form');
-Route::post('/products/select', [AddProductWerknemerController::class, 'index1']);
+
+// deze leidt tot het tweede deel van het toevoegen van een product aan een werknemer
+Route::post('/products/select', [AddProductWerknemerController::class, 'index1'])->name('werknemer.addproductpart2');
 Route::get('/products/select/{werknemerId}', [AddProductWerknemerController::class, 'select'])->name('products.select');
 Route::get('/products/select-warehouse', [AddProductWerknemerController::class, 'selectWarehouse'])->name('products.selectWarehouse');
 //what?

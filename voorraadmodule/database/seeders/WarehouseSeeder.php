@@ -25,7 +25,10 @@ class Warehouseseeder extends Seeder
         $warehouse4->save();
 
 
-        $iteminWarehouse1 = ItemQuantityInWarehouses::create(['product_id' => '1', 'warehouse_id' => 1, 'quantity' => 5]);
+        $iteminWarehouse1 = ItemQuantityInWarehouses::create(['product_id' => '1', 'warehouse_id' => 1, 'quantity' => 5, 'serial_number' => '001']);
+        $iteminWarehouse2 = ItemQuantityInWarehouses::create(['product_id' => '2', 'warehouse_id' => 1, 'quantity' => 5, 'serial_number' => '002']);
         $iteminWarehouse1-> save();
+        $iteminWarehouse2-> save();
+
     }
 }

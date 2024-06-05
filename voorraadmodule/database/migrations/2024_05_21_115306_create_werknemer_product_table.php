@@ -16,8 +16,7 @@ class CreateWerknemerProductTable extends Migration
         Schema::create('werknemer_product', function (Blueprint $table) {
             $table->id();
             $table->foreignId('werknemer_id')->constrained()->onDelete('cascade');
-            $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->integer('quantity')->default(0);
+            $table->foreignId('serialnumber_id')->constrained(table: 'product_serial_numbers')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -88,7 +88,7 @@ class TransferToWarehouseController extends Controller
             $itemQuantity->save();
         }
 
-        return redirect("/werknemer/{$owner->id}/products");
+        return redirect("/werknemer/{$owner->id}/producten");
     }
 
 

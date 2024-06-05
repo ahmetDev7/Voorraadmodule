@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="producten-pagina">
-    <h1>PRODUCT TOEVOEGEN AAN OPSLAG LOCATIE</h1>
+    <h1>Product toevoegen aan opslaglocatie</h1>
     <form class="default-form" action="{{ route('itemquantityinwarehouses.assignProductToWarehouse', ['id' => $product->id]) }}" method="post">
         @csrf
 

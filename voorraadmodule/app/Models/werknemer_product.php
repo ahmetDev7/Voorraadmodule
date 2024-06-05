@@ -12,8 +12,7 @@ class werknemer_product extends Model
     protected $fillable = [
         'id',
         'werknemer_id',
-        'product_id',
-        'quantity'
+        'serialnumber',
     ];
 
 }

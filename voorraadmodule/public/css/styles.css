@@ -78,20 +78,23 @@ nav ul li a:hover {
     margin: auto;
 }
 
-.producten-pagina {
+.producten-pagina,
+.serienummers-pagina {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.producten-pagina h1 {
+h1 {
     text-align: Center;
     color: white;
-    margin-top: 30px;
+    font-size:30px !important;
+    margin-top: 70px !important;
     font-size: 30px;
 }
 
-.producten-pagina .add-button {
+.producten-pagina .add-button,
+.serienummers-pagina .add-button {
     margin-left: auto;
     margin-right: 80px;
     cursor: pointer;

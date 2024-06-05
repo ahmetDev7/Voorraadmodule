@@ -33,22 +33,14 @@ class ItemQuantityInWarehousesController extends Controller
             ]
         ]);
 
-        $existingItem = ItemQuantityInWarehouses::where('product_id', $request->product_id)
-            ->where('warehouse_id', $request->warehouse_id)
-            ->first();
 
-        if ($existingItem) {
-            return redirect()->back()->with('error', 'Product is al in deze opslaglocatie.');
-        }
 
-        $quantity = count($request->serial_numbers);
         foreach ($request->serial_numbers as $serialNumber) {
 
             $itemQuantityInWarehouse = new ItemQuantityInWarehouses();
             $itemQuantityInWarehouse->product_id = $request->product_id;
             $itemQuantityInWarehouse->warehouse_id = $request->warehouse_id;
             $itemQuantityInWarehouse->serial_number = $serialNumber; 
-            $itemQuantityInWarehouse->quantity = 1;
             $itemQuantityInWarehouse->save();
         }
 

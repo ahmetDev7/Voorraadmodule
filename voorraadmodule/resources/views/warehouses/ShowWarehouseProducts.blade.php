@@ -3,7 +3,7 @@
 @section('content')
 <div class="producten-pagina">
   <h1>{{ $warehouse->name }}</h1>
-  
+
   <div class="bg-white pb-4 px-4 rounded-md w-full" style="width:1000px; margin-left:auto; margin-right:auto; margin-top:50px;">
     <div class="w-full flex justify-end px-2 mt-2">
       <div class="w-full sm:w-64 inline-block relative ">
@@ -20,7 +20,7 @@
     <div class="overflow-x-auto mt-6">
 
       <table class="table-auto border-collapse w-full">
-        
+
         <thead>
           <tr class="rounded-lg text-sm font-medium text-gray-700 text-left" style="font-size: 0.9674rem">
             <th class="px-4 py-2 bg-gray-200" style="background-color:#f8f8f8">Product Name</th>
@@ -28,12 +28,21 @@
           </tr>
         </thead>
         <tbody class="text-sm font-normal text-gray-700">
-          @foreach($products as $product)
-          <tr>
-            <td class="border px-4 py-2">{{ $product->name }}</td>
-            <td class="border px-4 py-2">{{ $product->pivot->quantity }}</td>
-          </tr>
-          @endforeach
+        <?php
+$uniqueProducts = [];
+?>
+@foreach($products as $product)
+    <?php
+    if (!in_array($product->id, $uniqueProducts)) {
+        $uniqueProducts[] = $product->id;
+    ?>
+    <tr>
+        <td class="border px-4 py-2">{{ $product->name }}</td>
+        <td class="border px-4 py-2">{{ $product->serial_numbers_count }}</td>
+    </tr>
+    <?php } ?>
+@endforeach
+
         </tbody>
       </table>
     </div>

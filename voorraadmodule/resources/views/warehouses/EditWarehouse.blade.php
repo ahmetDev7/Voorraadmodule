@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="producten-pagina">
-    <h1>PRODUCT AANPASSEN</h1>
+    <h1>OPSLAGLOCATIE AANPASSEN</h1>
     <form class="default-form" method="POST" action="{{ route('warehouses.update', ['id' => $warehouse->id]) }}">
         @csrf
         @method('PUT')
@@ -36,11 +36,9 @@
         @if ($errors->has('land'))
         <p style="color:#FF0000;">{{ $errors->first('land') }}</p>
         @endif
-
-
         <input class="submit" type="submit" value="Aanpassen" />
         @if(session()->has('success'))
-        <div class="alert alert-success">
+        <div style="color:green" class="alert alert-success">
             {{ session()->get('success') }}
         </div>
         @endif

@@ -23,7 +23,6 @@ class UpdateProductController extends Controller
         $product = Product::findOrFail($id);
         $request->validate([
             'productnummer' => 'required',
-            'serialnumber' => 'required|string|required|max:255',
             'name' => 'required',
             'description' => 'required|string|required|max:255',
             'category' => 'required'
@@ -37,22 +36,7 @@ class UpdateProductController extends Controller
 
 
 
-        foreach ($request->input('itemQuantities') as $warehouseId => $data) {
-            $request->validate([
-                'itemQuantities.' . $warehouseId . '.quantity' => 'required|numeric|regex:/^[1-9]{0}[0-9]+$/'
-            ]);
-
-            $warehouseId = $warehouseId;
-
-            $itemQuantity = ItemQuantityInWarehouses::where([
-                'product_id' => $product->id,
-                'warehouse_id' => $warehouseId
-            ])->firstOrFail();
-
-
-            $itemQuantity->quantity = $data['quantity'];
-            $itemQuantity->save();
-        }
+        
 
         if ($request->has('deleteWarehouse')) {
 

@@ -20,7 +20,9 @@ class WerknemerController extends Controller
     public function showProducts($id)
     {
         // Retrieve the werknemer with their products
-        $werknemer = Werknemer::with('products')->findOrFail($id);
+        $werknemer = Werknemer::with('serialNumbers.product')->findOrFail($id);
+        
+
 
         // Pass the data to the view
         return view('werknemers\inventory', compact('werknemer'));

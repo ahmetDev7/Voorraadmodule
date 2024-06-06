@@ -17,7 +17,6 @@ class Product extends Model
     public function werknemers()
     {
         return $this->belongsToMany(Werknemer::class, 'werknemer_product')
-            ->withPivot('quantity')
             ->withTimestamps();
     }
 

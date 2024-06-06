@@ -2,33 +2,41 @@
 
 namespace Database\Seeders;
 
+use App\Models\ProductSerialNumber;
+use App\Models\werknemer_product;
 use Illuminate\Database\Seeder;
 use App\Models\Werknemer;
-use App\Models\Product;
 
 class WerknemerProductSeeder extends Seeder
 {
     public function run()
     {
-        $werknemer1 = Werknemer::create(['name' => 'John Doe', 'email' => 'john@example.com', 'functie' => 'Monteur']);
-        $werknemer2 = Werknemer::create(['name' => 'Jane Smith', 'email' => 'jane@example.com', 'functie' => 'Monteur']);
+        Werknemer::create(['name' => 'John Doe', 'email' => 'john@example.com', 'functie' => 'Monteur'])->save();
+        Werknemer::create(['name' => 'Jane Smith', 'email' => 'jane@example.com', 'functie' => 'Monteur'])->save();
 
-        $product1 = Product::create([
-            'productnummer' => '005',
-            'name' => 'Product 1',
-            'description' => 'niet van toepassing',
-            'category' => 'Gereedschap',
+        ProductSerialNumber::create([
+            'product_id' => 1,
+            'serialnumber' => 'werknemertest1',
+            'productnumber' => 'producttest2'
+
+        ])->save();
+
+        ProductSerialNumber::create([
+            'product_id' => 2,
+            'serialnumber' => 'werknemertest2',
+            'productnumber' => 'producttest2'
+        ])->save();
+
+
+        $product1 = werknemer_product::create([
+            'werknemer_id' => 1,
+            'serialnumber_id' => 1,
         ]);
-
-        $product2 = Product::create([
-            'productnummer' => '006',
-            'name' => 'Product 2',
-            'description' => 'niet van toepassing',
-            'category' => 'Gereedschap',
+        $product1->save();
+        $product2 = werknemer_product::create([
+            'werknemer_id' => 1,
+            'serialnumber_id' => 2,
         ]);
-
-        $werknemer1->products()->attach($product1->id, ['quantity' => 5]);
-        $werknemer1->products()->attach($product2->id, ['quantity' => 3]);
-        $werknemer2->products()->attach($product1->id, ['quantity' => 2]);
+        $product2->save();
     }
 }

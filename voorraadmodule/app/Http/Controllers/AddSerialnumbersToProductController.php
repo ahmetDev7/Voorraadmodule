@@ -43,7 +43,7 @@ class AddSerialnumbersToProductController extends Controller
 
             return redirect()->back()->with('success', 'Serienummer is toegevoegd aan het bestaande product!');
         } else {
-            return redirect()->back()->with('error', 'Serienummer is niet toegevoegd aan het bestaande product.');
+            return redirect()->back()->with('error', 'Selecteer een productnummer.');
         }
     }
 }

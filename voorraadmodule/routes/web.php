@@ -15,8 +15,7 @@ Route::get('/werknemers/', [App\Http\Controllers\WerknemerController::class, 'in
 Route::get('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'index'])->name('products.add');
 Route::post('/producten/toevoegen', [App\Http\Controllers\AddProductController::class, 'add']);
 
-
-
+Route::get('/produducten/alle-serienummers/', [App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
 Route::get('/werknemers/producten/toevoegen/{werknemerId}', [App\Http\Controllers\AddProductWerknemerController::class, 'index']);
 Route::post('/werknemers/producten/toevoegen/{werknemerId}', [App\Http\Controllers\AddProductWerknemerController::class, 'store'])->name('submit.form');
 

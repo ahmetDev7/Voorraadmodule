@@ -34,9 +34,7 @@
                     <tr class="rounded-lg text-sm font-medium text-gray-700 text-left" style="font-size: 0.9674rem">
                         <th class="px-4 py-2 bg-gray-200 " style="background-color:#f8f8f8">Productnummer</th>
                         <th class="px-4 py-2 " style="background-color:#f8f8f8">Naam</th>
-                        <th class="px-4 py-2 " style="background-color:#f8f8f8">Beschrijving</th>
                         <th class="px-4 py-2 " style="background-color:#f8f8f8">Categorie</th>
-                        <th class="px-4 py-2 " style="background-color:#f8f8f8">quantity</th>
                         <th class="px-4 py-2 " style="background-color:#f8f8f8">Acties</th>
 
 
@@ -45,16 +43,21 @@
                     </tr>
                 </thead>
                 <tbody class="text-sm font-normal text-gray-700">
-                    @foreach($werknemer->serialNumbers as $serialNumber)
+                    @foreach ($serialcodes as $serialproduct)
+                    @php
+                        $p = $products->where('id', $serialproduct->product_id)->first();
+                        $serialcode = $serialproduct->serialnumber;
+                        // Find the corresponding serial number details from product_serial_numbers table
+                    @endphp
                     <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
-                        <td class="px-4 py-4">{{ $serialNumber->product->productnummer }}</td>
-                        <td class="px-4 py-4">{{ $serialNumber->product->name }}</td>
-                        <td class="px-4 py-4">{{ $serialNumber->product->description }}</td>
-                        <td class="px-4 py-4">{{ $serialNumber->product->category }}</td>
-                        <td class="px-4 py-4">{{ $serialNumber->pivot->quantity }}</td>
+                        <td class="px-4 py-4">{{$serialcode}}</td>
+                        <td class="px-4 py-4">{{$p->name}}</td>
+                        <td class="px-4 py-4">{{$p->Categorie}}</td>
+
                         <td class="px-4 py-4">
-                            <a href="{{ route('products.transfer', ['werkid' => $werknemer->id, 'productid' => $serialNumber->product->id]) }}" class="small-add-button">
-                                <p>Overdraag product terug</p>
+                            <a href="{{ route('products.transfer', ['werkid' => $werknemer->id, 'productid' => $p->id, 'serialnummer ' => $serialcode]) }}"
+                                class="small-add-button">
+                                <p>overdraag product terug</p>
                             </a>
                         </td>
                     </tr>

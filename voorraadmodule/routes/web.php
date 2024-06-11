@@ -32,7 +32,9 @@ Route::get('/werknemer/{id}/producten', [App\Http\Controllers\WerknemerControlle
 Route::get('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductController::class, 'edit'])->name('products.edit');
 Route::put('/producten/{id}/aanpassen', [App\Http\Controllers\UpdateProductController::class, 'update'])->name('products.update');
 Route::get('/producten/{id}', [ProductController::class, 'show'])->name('products.show');
-Route::get('/producten/zoeken', [ProductController::class, 'search'])->name('products.search');
+
+Route::get('/product/zoeken', [App\Http\Controllers\ProductController::class, 'search'])->name('products.search');
+
 Route::get('/producten/toevoegen/serialnummer', [App\Http\Controllers\AddSerialnumbersToProductController::class, 'showAddSerialForm'])->name('products.addSerial');
 Route::post('/producten/toevoegen/serialnummer', [App\Http\Controllers\AddSerialnumbersToProductController::class, 'addSerial'])->name('products.addSerialForm');
 
@@ -46,7 +48,7 @@ Route::get('/werknemers/toevoegen', [App\Http\Controllers\WerknemerController::c
 Route::post('/werknemers/toevoegen', [App\Http\Controllers\WerknemerController::class, 'Addwerknemer']);
 // aanpassen van de werknemers
 Route::get('/werknemers/aanpassen/{id}', [App\Http\Controllers\WerknemerController::class, 'EditEmployeePage'])->name('werknemer.aanpassen');
-Route::post('/werknemers/aanpassen/{id}', [App\Http\Controllers\WerknemerController::class, 'EditEmployeeActual']);//verwijderen van de werknemers
+Route::post('/werknemers/aanpassen/{id}', [App\Http\Controllers\WerknemerController::class, 'EditEmployeeActual']); //verwijderen van de werknemers
 // verwijderen van de werknemers
 Route::get('/werknemers/verwijderen/{id}', [App\Http\Controllers\DeleteEmployeeController::class, 'Deletewerknemer'])->name('werknemer.delete');
 

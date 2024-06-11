@@ -52,7 +52,7 @@
                             <a href="{{ route('werknemer.aanpassen', $w->id) }}" class="small-button">
                                 <img id="logo" src="{{ url('/images/edit-icon.png') }}" alt="Edit Icon">
                             </a>
-                            <a href="{{ route('werknemer.delete', $w->id) }}" class="small-button">
+                            <a href="{{ route('werknemer.delete', $w->id) }}" class="small-button" onclick="confirmationArchive(event)">
                                 <img id="logo" src="{{ url('/images/Archive-Button.png') }}" alt="Edit Icon">
                             </a>
                         </td>

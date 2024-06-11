@@ -27,7 +27,7 @@
         @endif
         <input class="submit" type="submit" value="Toevoegen" />
         @if(session()->has('success'))
-        <div class="alert alert-success">
+        <div style="color:green" class="alert alert-success">
             {{ session()->get('success') }}
         </div>
         @endif

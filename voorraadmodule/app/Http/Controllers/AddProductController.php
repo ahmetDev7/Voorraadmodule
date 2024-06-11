@@ -25,7 +25,7 @@ class AddProductController extends Controller
     public function add(Request $request)
     {
         $request->validate([
-            'productnummer' => 'required|int',
+            'productnummer' => 'required',
             'name' => 'required|string',
             'description' => 'required|string|required|max:255',
             'category' => 'required|string'

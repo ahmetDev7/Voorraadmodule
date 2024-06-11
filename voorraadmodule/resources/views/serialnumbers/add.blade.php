@@ -9,7 +9,7 @@
         <select style="color:black;" name="existing_product_id">
             <option disabled selected>-- Selecteer een product --</option>
             @foreach($products as $product)
-                <option style="color:black;" value="{{ $product->id }}">{{ $product->name }} (Productnummer: {{ $product->productnummer }})</option>
+            <option style="color:black;" value="{{ $product->id }}">{{ $product->name }} (Productnummer: {{ $product->productnummer }})</option>
             @endforeach
         </select>
         <label>Serienummer</label>
@@ -19,9 +19,15 @@
         @endif
         <input class="submit" type="submit" value="Toevoegen" />
         @if(session()->has('success'))
-        <div class="alert alert-success">
+        <div style="color:green" class="alert alert-success">
             {{ session()->get('success') }}
         </div>
         @endif
+        @if(session()->has('error'))
+        <div style="color:red" class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+        @endif
+
 </div>
 @stop

@@ -39,7 +39,6 @@ Route::get('/producten/toevoegen/serialnummer', [App\Http\Controllers\AddSerialn
 Route::post('/producten/toevoegen/serialnummer', [App\Http\Controllers\AddSerialnumbersToProductController::class, 'addSerial'])->name('products.addSerialForm');
 
 Route::get('/archief', [ArchiveProductController::class, 'archief'])->name('products.list');
-// Route::get('/producten/archief', [ArchiveProductController::class, 'archief'])->name('products.unarchive');
 Route::get('/producten/{id}/archive', [ArchiveProductController::class, 'archive'])->name('products.archive');
 Route::get('/producten/archive-reverse/{id}', [ArchiveProductController::class, 'archiveReverse'])->name('products.archiveReverse');
 
@@ -54,12 +53,14 @@ Route::get('/werknemers/verwijderen/{id}', [App\Http\Controllers\DeleteEmployeeC
 
 Route::get('/werknemer/zoeken', [App\Http\Controllers\WerknemerSearchController::class, 'search'])->name('werknemer.search');
 
+// warehouses functions
 Route::get('/opslaglocaties/', [App\Http\Controllers\WarehouseController::class, 'index']);
 Route::get('/opslaglocaties/toevoegen', [App\Http\Controllers\AddWarehousesController::class, 'index'])->name('warehouses.index');
 Route::post('/opslaglocaties/toevoegen', [App\Http\Controllers\AddWarehousesController::class, 'add'])->name('warehouses.add');
 Route::get('/opslaglocaties/{id}', [App\Http\Controllers\WarehouseController::class, 'show'])->name('warehouses.show');
 Route::get('/product-toevoegen-opslag/{id}', [App\Http\Controllers\ItemQuantityInWarehousesController::class, 'showAssignForm'])->name('itemquantityinwarehouses.showAssignForm');
 Route::post('/product-toevoegen-opslag/{id}', [App\Http\Controllers\ItemQuantityInWarehousesController::class, 'assignProductToWarehouse'])->name('itemquantityinwarehouses.assignProductToWarehouse');
+Route::get('/warehouse/{id}/delete', [App\Http\Controllers\WarehouseController::class, 'delete'])->name('warehouses.delete');
 
 
 // deze zijn van het editen van warehouses

@@ -49,7 +49,7 @@
                                         <td class="px-4 py-4">
 
                                             <a href="{{ route('products.archiveReverse', $p->id) }}" class="small-button"
-                                                onclick="confirmationArchive(event)">
+                                                onclick="confirmation(event, 'Weet jij zeker dat je deze product uit de Archief wilt halen?')">
                                                 <img id="logo" src="{{url('/images/Reverse-Button.png')}}">
                                             </a>
                         </div>
@@ -85,38 +85,8 @@
 </style>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
-    integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-<script>
-    function confirmationArchive(ev) {
-        ev.preventDefault();
-        var urlToRedirect = ev.currentTarget.getAttribute('href');
-        console.log(urlToRedirect);
-        swal({
-            title: "Weet jij zeker dat je deze product uit de Archief wilt halen?",
-            text: "",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-            .then((willCancel) => {
-                if (willCancel) {
-
-
-
-                    window.location.href = urlToRedirect;
-
-                }
-
-
-            });
-
-
-    }
-</script>
 
 
 @stop

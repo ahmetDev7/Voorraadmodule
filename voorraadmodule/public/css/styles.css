@@ -1,7 +1,7 @@
 html,
 body {
     background-color: white;
-    color:black;
+    color: black;
 }
 
 .wide-input {
@@ -16,28 +16,28 @@ body {
     background-color: rgb(255, 255, 255);
     padding-top: 120px;
     max-width: 100% !important;
-    position:relative;
-    z-index:10;
-    padding-bottom:150px;
+    position: relative;
+    z-index: 10;
+    padding-bottom: 150px;
 }
 
-.background{
-    width:100%;
-    height:100%;
-    position:fixed;
-    z-index:0;
+.background {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 0;
     background: url("../images/background.jpg") no-repeat center center;
     background-size: cover;
-    opacity:0.1;
+    opacity: 0.1;
 }
 
-header{
-    position:fixed;
-    z-index:100;
+header {
+    position: fixed;
+    z-index: 100;
 }
 
-table{
-    color:black;
+table {
+    color: black;
 }
 
 nav {
@@ -99,24 +99,24 @@ nav ul li a:hover {
     display: flex;
     flex-direction: column;
     width: 100%;
-    z-index:50;
+    z-index: 50;
 }
 
-.bg-white{
-    padding:30px;
+.bg-white {
+    padding: 30px;
     box-shadow: 4px 3px 13px 1px gray;
 }
 
 h1 {
     text-align: Center;
     color: white;
-    font-size:30px !important;
+    font-size: 30px !important;
     margin-top: 70px !important;
     font-size: 30px;
     background-color: rgb(146, 0, 61);
-    padding-top:20px;
-    padding-bottom:20px;
-    margin-bottom:30px !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 30px !important;
 }
 
 .producten-pagina .add-button,
@@ -255,38 +255,40 @@ h1 {
     cursor: pointer;
 }
 
-table tr th{
+table tr th {
     background-color: #92003d !important;
     color: white;
 }
 
-label{
+label {
     color: #92003d !important;
-    font-weight:800;
+    font-weight: 800;
 }
 
-select, input[type="text"], textarea{
+select,
+input[type="text"],
+textarea {
     color: black;
     border: 1px solid black;
     padding: 13px;
 }
 
-input[type="search"]{
+input[type="search"] {
     padding: 12px;
     border: 1px solid #92003d;
-    outline:none;
-    color:black;
+    outline: none;
+    color: black;
 }
 
-input::placeholder{
-    color:black;
+input::placeholder {
+    color: black;
 }
 
-select{
-    padding:13px !important;
+select {
+    padding: 13px !important;
 }
 
-td{
-    text-align:center !important;
-    padding-top:5px;
+td {
+    text-align: center !important;
+    padding-top: 5px;
 }

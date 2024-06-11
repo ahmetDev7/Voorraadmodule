@@ -29,7 +29,7 @@
             <td class="px-4 py-4">{{$s->product->name}}</td>
             <td class="px-4 py-4">{{$s->product->description}}</td>
             <td class="px-4 py-4">{{$s->product->category}}</td>
-            <td class="px-4 py-4"> @if($s->warehouse) {{$s->warehouse->name}} @else Zit niet in opslag @endif </td>
+            <td class="px-4 py-4">{{ $s->warehouse ? $s->warehouse->name : 'Zit niet in opslag' }}</td>
             <td class="px-4 py-4"> <a href="{{ route('serialnumbers.delete', $s->id) }}" class="small-button"> <img id="logo" src="{{url('/images/Archive-Button.png')}}"> </a> </td>
           </tr> @empty <tr>
             <td colspan="8" class="px-4 py-4 list-group-item-danger">Er zijn geen serienummers aanwezig.</td>

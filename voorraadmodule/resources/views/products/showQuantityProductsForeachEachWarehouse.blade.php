@@ -9,12 +9,15 @@
                 <thead>
                     <tr class="rounded-lg text-sm font-medium text-gray-700 text-left" style="font-size: 0.9674rem">
                         <th class="px-4 py-2 bg-gray-200" style="background-color:#f8f8f8">Serienummer</th>
+                        <th class="px-4 py-2" style="background-color:#f8f8f8">Opslag</th>
                     </tr>
                 </thead>
                 <tbody class="text-sm font-normal text-gray-700">
                     @foreach($serialNumbers as $s)
                     <tr>
                         <td class="border px-4 py-2">{{ $s->serialnumber }}</td>
+                        <td class="border px-4 py-2">{{ $s->warehouse->name ?? 'Zit niet in opslag' }}</td> 
+
                     </tr>
                     @endforeach
                 </tbody>

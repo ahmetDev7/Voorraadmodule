@@ -15,10 +15,9 @@
     style="width:1000px; margin-left:auto; margin-right:auto; margin-top:50px;">
     <div class="w-full flex justify-end px-2 mt-2">
       <div class="w-full sm:w-64 inline-block relative ">
-        <input type="" name=""
-          class="leading-snug border border-gray-300 block w-full appearance-none bg-gray-100 text-sm text-gray-600 py-1 px-4 pl-8 rounded-lg"
-          placeholder="Zoeken" />
-
+        <form action="{{ route('warehouse.search') }}" method="GET">
+          <input type="search" name="search" value="{{ request('search') }}" class="leading-snug border border-gray-300 block w-full appearance-none bg-gray-100 text-sm text-gray-600 py-1 px-4 pl-8 rounded-lg" placeholder="Zoeken" />
+        </form>
         <div class="pointer-events-none absolute pl-3 inset-y-0 left-0 flex items-center px-2 text-gray-300">
 
           <svg class="fill-current h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.999 511.999">
@@ -28,7 +27,7 @@
         </div>
       </div>
     </div>
-    < class="overflow-x-auto mt-6">
+    <div class="overflow-x-auto mt-6">
 
       <table class="table-auto border-collapse w-full">
         <thead>
@@ -45,15 +44,15 @@
           </tr>
         </thead>
         <tbody class="text-sm font-normal text-gray-700">
-          @foreach($warehouses as $w)
-            <td class="px-4 py-4">{{$w->id}}</td>
-            <td class="px-4 py-4">{{$w->name}}</td>
-            <td class="px-4 py-4">{{$w->street}}</td>
-            <td class="px-4 py-4">{{$w->housenumber}}</td>
-            <td class="px-4 py-4">{{$w->zipcode}}</td>
-            <td class="px-4 py-4">{{$w->city}}</td>
-            <td class="px-4 py-4">{{$w->country}}</td>
-            <td class="px-4 py-4">
+          @forelse($warehouses as $w)
+          <td class="px-4 py-4">{{$w->id}}</td>
+          <td class="px-4 py-4">{{$w->name}}</td>
+          <td class="px-4 py-4">{{$w->street}}</td>
+          <td class="px-4 py-4">{{$w->housenumber}}</td>
+          <td class="px-4 py-4">{{$w->zipcode}}</td>
+          <td class="px-4 py-4">{{$w->city}}</td>
+          <td class="px-4 py-4">{{$w->country}}</td>
+          <td class="px-4 py-4">
 
             <a href="{{ route('warehouses.show', $w->id) }}" class="small-button-2">
               <img id="logo" src="{{url('/images/info-icon.png')}}">
@@ -70,9 +69,13 @@
         </a>
         </td>
         </tr>
-      @endforeach
-  </table>
-</div>
+    @empty
+    <tr>
+      <td colspan="8" class="px-4 py-4 list-group-item-danger">Geen opslaglocatie.</td>
+    </tr>
+    @endforelse
+    </table>
+  </div>
 
 </div>
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ArchivedProduct;
-use App\Models\ItemQuantityInWarehouses;
+use App\Models\ProductSerialNumber;
 
 
 class ProductController extends Controller
@@ -15,7 +15,7 @@ class ProductController extends Controller
     {
         $products = Product::with('warehouses')->get();
 
-        
+
         return view('products.products', compact('products'));
     }
     public function archive($id)
@@ -42,8 +42,8 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
-        $warehouses = $product->warehouses()->withPivot('quantity')->get();
-        return view('products.showQuantityProductsForeachEachWarehouse', compact('warehouses', 'product'));
+        $serialNumbers = $product->serialNumbers; 
+        return view('products.showQuantityProductsForeachEachWarehouse', compact('product', 'serialNumbers'));
     }
 
     public function search(Request $request)

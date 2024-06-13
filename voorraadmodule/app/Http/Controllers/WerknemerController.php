@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Werknemer;
-
+use App\Models\werknemer_product;
+use App\Models\ProductSerialNumber;
+use App\Models\Product;
 
 class WerknemerController extends Controller
 {
@@ -20,12 +22,30 @@ class WerknemerController extends Controller
     public function showProducts($id)
     {
         // Retrieve the werknemer with their products
-        $werknemer = Werknemer::with('serialNumbers.product')->findOrFail($id);
-        
+        $werknemer = Werknemer::find($id);
+
+        // Get the werknemer's products
+        $werknemerproducten = werknemer_product::where('werknemer_id', $id)->get();
+
+        // Get the serial numbers IDs associated with the werknemer's products
+        $serialnumbers = $werknemerproducten->pluck('serialnumber_id');
+
+        // Get the serial number details from product_serial_numbers table
+        $serialcodes = ProductSerialNumber::findMany($serialnumbers);
+
+        // Get the product IDs associated with the serial numbers
+        $serialcodeProducts = $serialcodes->pluck('product_id');
+
+        // Get the products details
+        $products = Product::findMany($serialcodeProducts);
+
+        // Count of products
+        $tocount = $serialcodeProducts->count();
+
 
 
         // Pass the data to the view
-        return view('werknemers\inventory', compact('werknemer'));
+        return view('werknemers\inventory', compact('werknemer', 'products', 'serialcodes'));
     }
 
 

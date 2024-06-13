@@ -28,7 +28,6 @@
 
             @for($i = 0; $i < $productsinWarehouses->count(); $i++)
 
-                <option value=""> --slider is working--</option>
 
                 @php
                     $warehouse_ids = $productsinWarehouses->pluck('warehouse_id');

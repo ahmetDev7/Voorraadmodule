@@ -35,6 +35,7 @@
                         <th class="px-4 py-2 bg-gray-200 " style="background-color:#f8f8f8">Productnummer</th>
                         <th class="px-4 py-2 " style="background-color:#f8f8f8">Naam</th>
                         <th class="px-4 py-2 " style="background-color:#f8f8f8">Categorie</th>
+                        <th class="px-4 py-2 " style="background-color:#f8f8f8">serienummer</th>
                         <th class="px-4 py-2 " style="background-color:#f8f8f8">Acties</th>
 
 
@@ -52,7 +53,9 @@
                     <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
                         <td class="px-4 py-4">{{$serialcode}}</td>
                         <td class="px-4 py-4">{{$p->name}}</td>
-                        <td class="px-4 py-4">{{$p->Categorie}}</td>
+                        <td class="px-4 py-4">{{$p->category}}</td>
+                        <td class="px-4 py-4">{{$serialcode}}</td>
+
 
                         <td class="px-4 py-4">
                             <a href="{{ route('products.transfer', ['werkid' => $werknemer->id, 'productid' => $p->id, 'serialnummer ' => $serialcode]) }}"

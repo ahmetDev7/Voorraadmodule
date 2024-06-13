@@ -21,31 +21,27 @@
         <input type="hidden" name="werknemer_id" value="{{ $werknemerId }}">
         <input type="hidden" name="product_id" value="{{ $product->id }}">
 
-        <label for="warehouse" style="color: black;">Select a warehouse: </label>
-        <select name="warehouse" id="warehouse" onchange="updateMaxQuantity()" style="color: black;">
-            @if ($warehouses->isEmpty())
-                <option value="" disabled style="color: black;">Geen warehouses die deze product heeft</option>
-            @else
-                <option value=-1> --kies een magazijn</option>
-                @foreach($warehouses as $warehouse)
+        <label for="serialnumber" style="color: black;">Select a warehouse: </label>
+        <select name="serialnumber" id="serialnumber" style="color: black;">
+            <option value=""> --kies een serienummer-- </option>
 
-                    <option value="{{ $warehouse->id }}"
-                        data-quantity="{{ $warehouse->products->firstWhere('id', $product->id)->pivot->quantity ?? 0 }}"
-                        style="color: black;">
-                        {{ $warehouse->name }} (Quantity:
-                        @forelse($warehouse->products as $product)
-                            {{ $product->pivot->quantity }}
-                        @empty
-                            niet beschikbaar
-                        @endforelse
-                        )
-                    </option>
-                @endforeach
-            @endif
+
+            @for($i = 0; $i < $productsinWarehouses->count(); $i++)
+
+
+                @php
+                    $warehouse_ids = $productsinWarehouses->pluck('warehouse_id');
+
+                    $warehouse = $validwarehouses->find($warehouse_ids[$i]);
+                    $serialnumber = $productsinWarehouses->pluck('serial_number')[$i];
+                @endphp
+
+                <option value="{{ $serialnumber }}">
+                    {{ $serialnumber }} - {{ $warehouse->name }}
+                </option>
+            @endfor
         </select>
 
-        <label for="quantity" style="color: black;">Quantity:</label>
-        <input type="number" name="quantity" id="quantity" value="1" min="1" style="color: black;">
 
         <button type="submit" style="color: black;">Verzend</button>
     </form>
@@ -55,17 +51,5 @@
 
 </div>
 
-<script>
-    function updateMaxQuantity() {
-        const warehouseSelect = document.getElementById('warehouse');
-        const selectedOption = warehouseSelect.options[warehouseSelect.selectedIndex];
-        const maxQuantity = selectedOption.getAttribute('data-quantity');
-        document.getElementById('quantity').max = maxQuantity;
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        updateMaxQuantity();
-    });
-</script>
 
 @stop

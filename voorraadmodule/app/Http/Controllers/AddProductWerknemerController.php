@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductSerialNumber;
+use App\Models\werknemer_product;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use App\Models\Werknemer;
@@ -15,9 +17,6 @@ class AddProductWerknemerController extends Controller
     {
         $werknemer = Werknemer::findOrFail($werknemerId);
 
-        $products = Product::all();
-
-        $warehouse = Warehouse::all();
 
 
 //dit pakt alle unieke productID's en doet een findmany met productselect
@@ -25,7 +24,7 @@ class AddProductWerknemerController extends Controller
         $productsSelect = Product::findMany($validProductIDs);
 
 //dit kiest het product
-        return view('werknemers.addproduct', compact('werknemer', 'products', 'warehouse', 'werknemerId', 'productsSelect'));
+        return view('werknemers.addproduct', compact('werknemer', 'werknemerId', 'productsSelect'));
     }
 
     // public function getItemoptions($warehouseID)
@@ -76,14 +75,15 @@ class AddProductWerknemerController extends Controller
         $werknemer = Werknemer::findOrFail($werknemerId);
         $product = Product::findOrFail($productId);
 
-        // $warehouses = Warehouse::all();
 
+        $productsinWarehouses = ItemQuantityInWarehouses::where('product_id', $productId);
 
-        $warehouses = $product->warehouses1()->get();
+        $validwarehouses = Warehouse::findMany($productsinWarehouses->pluck('warehouse_id'));
+
 
 
         // Return the view for selecting warehouse with necessary data
-        return view('werknemers.select-warehouse', compact('werknemerId', 'werknemer', 'product', 'warehouses'));
+        return view('werknemers.select-warehouse', compact('werknemerId', 'werknemer', 'product', 'productsinWarehouses', 'validwarehouses'));
     }
 
     public function store(Request $request)
@@ -91,49 +91,30 @@ class AddProductWerknemerController extends Controller
         $validatedData = $request->validate([
             'werknemer_id' => 'required|exists:werknemers,id',
             'product_id' => 'required|exists:products,id',
-            'quantity' => 'required|integer|min:1',
-            'warehouse' => 'required|exists:item_quantity_in_warehouses,warehouse_id|integer|min:0'
+            'serialnumber' => 'required|string|exists:item_quantity_in_warehouses,serial_number',
         ]);
 
         $werknemerID = $validatedData['werknemer_id'];
         $productID = $validatedData['product_id'];  // This is the product ID
-        $quantity = $validatedData['quantity'];
-        $warehouseID = $validatedData['warehouse']; // this is the ID of the warehouse
+        $serialnumber = $validatedData['serialnumber'];
 
-        $product = Product::find($productID);
-        $werknemer = Werknemer::find($werknemerID);
+        $warehouseItem = ItemQuantityInWarehouses::where('serial_number', $serialnumber)->where('product_id', $productID)->first()->pluck('id');
 
-        $warehouseItem = ItemQuantityInWarehouses::where('warehouse_id', $warehouseID)->where('product_id', $productID)->first();
 
-        if ($warehouseItem && $warehouseItem->quantity == $quantity)// checkt of de warehouse waarvan je afhaald genoeg heeft. als exact genoeg verwijdert het de product
-        {
-            ItemQuantityInWarehouses::destroy($warehouseItem->id);
+        $serial_id = ProductSerialNumber::where('serialnumber', $serialnumber)->where('product_id', $productID)->pluck('id');
+
+
+
+        werknemer_product::create([
+            'werknemer_id' => $werknemerID,
+            'serialnumber_id' => $serial_id[0]
+        ])->save();
+
+        $warehouseItem = ItemQuantityInWarehouses::find($warehouseItem[0]);
+        if ($warehouseItem) {
+            $warehouseItem->delete();
         }
-        else if ($warehouseItem && $warehouseItem->quantity > $quantity) // als de warenhuis meer dan genoeg heeft verlaagt het de kwantiteit
-        {
-            $warehouseItem->quantity -= $quantity;
-            $warehouseItem->save();
-        } else // anders gaat het direct weg
-        {
-            return redirect()->to(url('/werknemer/' . $werknemerID . '/producten'))->with('failure', 'product not in Warehouse!');
-        }
-
-
-        $exists = $werknemer->products()->where('product_id', $productID)->exists(); // checkt of er een duplicate komt
-
-
-        if (!$exists) {
-            $werknemer->products()->attach($product->id, ['quantity' => $quantity]);
-
-        } else { // als het al bestaat word de quantity van het bestaande product plus met de nieuwe verzoek word gedaan
-            $currentQuantity = $werknemer->products()->where('product_id', $productID)->first()->pivot->quantity;
-            $newQuantity = $currentQuantity + $quantity;
-
-            $werknemer->products()->updateExistingPivot($productID, ['quantity' => $newQuantity]);
-        }
-
-
-        return redirect()->to(url('/werknemer/' . $werknemerID . '/producten'))->with('success', 'Product updated successfully!');
+        return redirect()->to(route('werknemer.products', $werknemerID))->with('success', 'Product updated successfully!');
 
     }
 

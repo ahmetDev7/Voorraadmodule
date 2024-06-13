@@ -13,7 +13,7 @@ class ItemQuantityInWarehouses extends Model
     protected $fillable = [
         'id',
         'product_id',
-        'serial_number_id',
+        'serial_number',
         'warehouse_id'
     ];
 

@@ -19,18 +19,20 @@ class WarehouseController extends Controller
     {
         // Find the warehouse by ID
         $warehouse = Warehouse::findOrFail($id);
-    
+
         // Get products with their quantities specific to the selected warehouse
-        $products = Product::withCount(['serialNumbers as serial_numbers_count' => function ($query) use ($id) {
-            $query->join('item_quantity_in_warehouses', 'product_serial_numbers.serialnumber', '=', 'item_quantity_in_warehouses.serial_number')
-                  ->where('item_quantity_in_warehouses.warehouse_id', $id);
-        }])
-        ->whereHas('serialNumbers', function ($query) use ($id) {
-            $query->join('item_quantity_in_warehouses', 'product_serial_numbers.serialnumber', '=', 'item_quantity_in_warehouses.serial_number')
-                  ->where('item_quantity_in_warehouses.warehouse_id', $id);
-        })
-        ->get();
-    
+        $products = Product::withCount([
+            'serialNumbers as serial_numbers_count' => function ($query) use ($id) {
+                $query->join('item_quantity_in_warehouses', 'product_serial_numbers.serialnumber', '=', 'item_quantity_in_warehouses.serial_number')
+                    ->where('item_quantity_in_warehouses.warehouse_id', $id);
+            }
+        ])
+            ->whereHas('serialNumbers', function ($query) use ($id) {
+                $query->join('item_quantity_in_warehouses', 'product_serial_numbers.serialnumber', '=', 'item_quantity_in_warehouses.serial_number')
+                    ->where('item_quantity_in_warehouses.warehouse_id', $id);
+            })
+            ->get();
+
         return view('warehouses.ShowWareHouseProducts', compact('warehouse', 'products'));
     }
 
@@ -66,4 +68,19 @@ class WarehouseController extends Controller
 
         return redirect()->back()->with('success', 'Opslaglocatie is succesvol bijgewerkt!');
     }
+
+    public function delete($id)
+    {
+        $warehouse = Warehouse::find($id);
+
+        if (!$warehouse) {
+            return redirect()->back()->with('error', 'Product not found.');
+        }
+
+        $warehouse->delete();
+
+        return redirect()->back();
+
+    }
+
 }

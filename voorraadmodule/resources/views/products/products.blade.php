@@ -47,34 +47,31 @@
         </thead>
         <tbody class="text-sm font-normal text-gray-700">
           @forelse($products as $p)
-          <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
-            <td class="px-4 py-4">{{$p->productnummer}}</td>
-            <td class="px-4 py-4">{{$p->name}}</td>
-            <td class="px-4 py-4">{{$p->description}}</td>
-            <td class="px-4 py-4">{{$p->category}}</td>
-            <td class="px-4 py-4">{{$p->serial_number_count}}</td>
-            <td class="px-4 py-4">
-              <a href="{{ route('products.edit', $p->id) }}" class="small-button">
-                <img id="logo" src="{{url('/images/edit-icon.png')}}">
-              </a>
-              <a href="{{ route('products.archive', $p->id) }}" class="small-button" onclick="confirmationArchive(event)">
-                <img id="logo" src="{{url('/images/Archive-Button.png')}}">
-              </a>
-              <a href="{{ route('itemquantityinwarehouses.showAssignForm', $p->id) }}" class="small-button">
-                <img id="logo" src="{{url('/images/warehouse2.png')}}">
-              </a>
-              <a href="{{ route('products.show', $p->id) }}" class="small-button-2">
-                <img id="logo" src="{{url('/images/info-icon.png')}}">
-              </a>
+        <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
+        <td class="px-4 py-4">{{$p->productnummer}}</td>
+        <td class="px-4 py-4">{{$p->name}}</td>
+        <td class="px-4 py-4">{{$p->description}}</td>
+        <td class="px-4 py-4">{{$p->category}}</td>
+        <td class="px-4 py-4">{{$p->serial_number_count}}</td>
+        <td class="px-4 py-4">
+          <a href="{{ route('products.edit', $p->id) }}" class="small-button">
+          <img id="logo" src="{{url('/images/edit-icon.png')}}">
+          </a>
+          <a href="{{ route('products.archive', $p->id) }}" class="small-button"
+          onclick="confirmation(event,'Weet u zeker dat u dit product wilt archiveren?')">
+          <img id="logo" src="{{url('/images/Archive-Button.png')}}">
+          </a>
+          <a href="{{ route('itemquantityinwarehouses.showAssignForm', $p->id) }}" class="small-button">
+          <img id="logo" src="{{url('/images/warehouse2.png')}}">
+          </a>
 
-
-            </td>
-          </tr>
-          @empty
-          <tr>
-            <td colspan="8" class="px-4 py-4 list-group-item-danger">geen producten.</td>
-          </tr>
-          @endforelse
+        </td>
+        </tr>
+      @empty
+      <tr>
+      <td colspan="8" class="px-4 py-4 list-group-item-danger">geen producten.</td>
+      </tr>
+    @endforelse
         </tbody>
       </table>
     </div>
@@ -103,36 +100,6 @@
   </style>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-<script>
-  function confirmationArchive(ev) {
-    ev.preventDefault();
-    var urlToRedirect = ev.currentTarget.getAttribute('href');
-    console.log(urlToRedirect);
-    swal({
-        title: "Weet u zeker dat u dit product wilt archiveren?",
-        text: "",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willCancel) => {
-        if (willCancel) {
-
-
-
-          window.location.href = urlToRedirect;
-
-        }
-
-
-      });
-
-
-  }
-</script>
 
 
 @stop

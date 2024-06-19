@@ -8,7 +8,8 @@ use App\Models\Werknemer;
 use App\Models\Product;
 use App\Models\Warehouse;
 use App\Models\ItemQuantityInWarehouses;
-
+use App\Models\ProductSerialNumber;
+use App\Models\werknemer_product;
 use Illuminate\Support\Facades\DB;
 
 
@@ -20,19 +21,13 @@ class TransferToWarehouseController extends Controller
     //
     public function index($werkid, $productid)
     {
-        $product = Product::with('warehouses')->findOrFail($productid);
+        $product = Product::find($productid);
 
         $warehouses = Warehouse::all();
 
-        $owner = Werknemer::with([
-            'products' => function ($query) use ($productid) {
-                $query->where('products.id', $productid);
-            }
-        ])->findOrFail($werkid);
+        $owner = Werknemer::find($werkid);
 
-        $quantity = $owner->products->first()->pivot->quantity ?? 0;
-
-        return view('products.transferback', compact('product', 'warehouses', 'owner', 'quantity'));
+        return view('products.transferback', compact('product', 'warehouses', 'owner',));
     }
 
     public function transfer(Request $request)
@@ -40,57 +35,31 @@ class TransferToWarehouseController extends Controller
         $validatedData = $request->validate([
             'ownerid' => 'required',
             'productid' => 'required',
-            'quantity' => 'required|integer|min:1',
             'warehouse' => 'required',
         ]);
 
         $ownerId = $validatedData['ownerid'];
         $productId = $validatedData['productid'];
-        $quantity = $validatedData['quantity'];
         $warehouseId = $validatedData['warehouse'];
 
         $owner = Werknemer::find($ownerId);
         $product = Product::find($productId);
 
-        $quantityInPivot = $owner->products()->where('product_id', $productId)->first()->pivot->quantity;
-
-
-        $check = ItemQuantityInWarehouses::where('product_id', $productId)
-            ->where('warehouse_id', $warehouseId)
-            ->first();
-        $itemQuantity = new ItemQuantityInWarehouses();
-        $itemQuantity->product_id = $productId;
-        $itemQuantity->warehouse_id = $warehouseId;
-        $itemQuantity->quantity = $quantity;
-
-        if ($quantityInPivot > $quantity) {
-
-            $owner->products()->updateExistingPivot($productId, ['quantity' => $quantityInPivot - $quantity]);
+        $ProductToWarehouseID = werknemer_product::where('werknemer_id', $ownerId)->first();
+        $productToWarehouse = ProductSerialNumber::where('id', $ProductToWarehouseID->id)->first();
 
 
 
-        } elseif ($quantityInPivot == $quantity) {
-            DB::table('werknemer_product')
-                ->where('werknemer_id', $owner->id)
-                ->where('product_id', $product->id)
-                ->delete();
-        } else {
-            return; // zou nooit moeten kunnen
-        }
-        if ($check) {
-            $check->quantity += $quantity;
-            $check->save();
-        } else {
-            $itemQuantity = new ItemQuantityInWarehouses();
-            $itemQuantity->product_id = $productId;
-            $itemQuantity->warehouse_id = $warehouseId;
-            $itemQuantity->quantity = $quantity;
-            $itemQuantity->save();
-        }
 
+
+
+        $goal = new ItemQuantityInWarehouses();
+        $goal->product_id = $productId;
+        $goal->serial_number = $productToWarehouse->serialnumber;
+        $goal->warehouse_id = $warehouseId;
+        $goal->save();
+
+        $ProductToWarehouseID->delete();
         return redirect("/werknemer/{$owner->id}/producten");
     }
-
-
-
 }

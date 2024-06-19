@@ -132,7 +132,7 @@ return [
     'prohibited_if' => 'The :attribute field is prohibited when :other is :value.',
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
     'prohibits' => 'The :attribute field prohibits :other from being present.',
-    'regex' => 'Een :attribute mag alleen cijfers, letters of - bevatten en moet eindigen met een cijfer of letter.',
+    'regex' => 'Een :attribute mag alleen cijfers letters of - bevatten en moet eindigen met een cijfer of letter.',
     'required' => 'Deze veld :attribute mag niet leeg zijn.',
     'required_array_keys' => 'The :attribute field must contain entries for: :values.',
     'required_if' => 'The :attribute field is required when :other is :value.',
@@ -171,6 +171,10 @@ return [
     */
 
     'custom' => [
+        'housenumber' => [
+            'regex' => 'Huisnummer mag alleen cijfers en letters bevatten en moet beginnen met een cijfer.',
+        ],
+
         'street' => [
             'regex' => 'Straat mag alleen letters, cijfers en - bevatten. Een straat mag niet beginnen of eindigen met een -.',
         ],
@@ -178,10 +182,10 @@ return [
             'regex' => 'Dit is geen valide postcode.',
         ],
         'city' => [
-            'regex' => 'Stad mag alleen letters, en \'`\' bevatten.',
+            'regex' => 'Stad mag alleen letters, en \' bevatten.',
         ],
         'country' => [
-            'regex' => 'Land mag alleen letters en bevatten.',
+            'regex' => 'Land mag alleen letters en  - bevatten.',
         ],
         'name' => [
             'regex' => 'Naam mag alleen cijfers, letters en bevatten.',
@@ -190,7 +194,10 @@ return [
             'rule-name' => 'custom-message',],
         'quantity' => [
                 'regex' => 'Hoeveelheid mag alleen nummers bevatten en moet beginnen met een positief cijfer.',
-            ]
+        ],
+        'serialnumber_exist' => [
+        'regex' => 'Het serienummer mag alleen letters, cijfers en strepen bevatten en mag niet beginnen of eindigen met een streep, en mag geen spaties bevatten.',
+    ],
 
     ],
 

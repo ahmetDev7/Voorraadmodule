@@ -27,7 +27,7 @@ class TransferToWarehouseController extends Controller
 
         $owner = Werknemer::find($werkid);
 
-        return view('products.transferback', compact('product', 'warehouses', 'owner', ));
+        return view('products.transferback', compact('product', 'warehouses', 'owner',));
     }
 
     public function transfer(Request $request)
@@ -60,9 +60,6 @@ class TransferToWarehouseController extends Controller
         $goal->save();
 
         $ProductToWarehouseID->delete();
-        $productToWarehouse->delete();
         return redirect("/werknemer/{$owner->id}/producten");
     }
-
-
 }

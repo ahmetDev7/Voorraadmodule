@@ -16,16 +16,18 @@ class AddWarehousesController extends Controller
     {
         $request->validate([
             'name' => 'required|max:60',
-            'street' => 'required|string|regex:/^[a-zA-Z0-9\-]+$/|max:60',
-            'housenumber' => 'required|numeric|max:20000',
+            'street' => 'required|string|min:3|max:60|regex:/^[a-zA-Z0-9][a-zA-Z0-9\s\-]*[a-zA-Z0-9]$/',
+            'housenumber' => 'required|regex:/^[0-9]{1,5}[a-zA-Z0-9]*[0-9]$/',
             'zipcode' => 'required|string|min:6|max:6|regex:/^[0-9]{4}[a-zA-Z]{2}$/',
-            'city' => 'required|string|max:60|regex:/^[a-zA-Z\`]+$/',
-            'country' => 'required|string|max:50|regex:/^[a-zA-Z\-]+$/'
+            'city' => "required|string|min:6|max:60|regex:/^(?!-)[a-zA-Z\s'-]+(?<!-)$/",
+            'country' => 'required|string|min:6|max:50|regex:/^[a-zA-Z]+(?:[ -][a-zA-Z]+)*$/'
         ], [
             'name.regex' => __('custom.name.regex'),
-            'country.regex' => __('custom.country.regex'),
-            'city.regex' => __('custom.city.regex'),
-            'zipcode.regex' => __('custom.zipcode.regex'),
+            'street.regex' => __('validation.custom.street.regex'),
+            'housenumber.regex' => __('validation.custom.housenumber.regex'),
+            'country.regex' => __('validation.custom.country.regex'),
+            'city.regex' => __('validation.custom.city.regex'),
+            'zipcode.regex' => __('validation.custom.zipcode.regex'),
         ]);
         $warehouse  = new Warehouse();
         $warehouse->name = $request->input('name');

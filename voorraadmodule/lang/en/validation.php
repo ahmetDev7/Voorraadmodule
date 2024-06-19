@@ -171,6 +171,9 @@ return [
     */
 
     'custom' => [
+        'street' => [
+            'regex' => 'Straat mag alleen letters, cijfers en - bevatten. Een straat mag niet beginnen of eindigen met een -.',
+        ],
         'zipcode' => [
             'regex' => 'Dit is geen valide postcode.',
         ],

@@ -29,7 +29,6 @@ class AddWarehousesController extends Controller
             'city.regex' => __('validation.custom.city.regex'),
             'zipcode.regex' => __('validation.custom.zipcode.regex'),
         ]);
-        
         $warehouse  = new Warehouse();
         $warehouse->name = $request->input('name');
         $warehouse->street = $request->input('street');

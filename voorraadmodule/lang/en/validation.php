@@ -174,8 +174,9 @@ return [
         'housenumber' => [
             'regex' => 'Huisnummer mag alleen cijfers en letters bevatten en moet beginnen met een cijfer.',
         ],
+
         'street' => [
-            'regex' => 'Straat mag alleen cijfers, letters en - bevatten en moet beginnen of eindigen met een cijfer.',
+            'regex' => 'Straat mag alleen letters, cijfers en - bevatten. Een straat mag niet beginnen of eindigen met een -.',
         ],
         'zipcode' => [
             'regex' => 'Dit is geen valide postcode.',

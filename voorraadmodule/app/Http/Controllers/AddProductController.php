@@ -25,10 +25,10 @@ class AddProductController extends Controller
     public function add(Request $request)
     {
         $request->validate([
-            'productnummer' => 'required',
-            'name' => 'required|string',
+            'productnummer' => 'required|integer',
+            'name' => "required|regex:/^(?=.*[a-zA-Z])[a-zA-Z0-9\s\-!@#$%^&*()]+$/",
             'description' => 'required|string|required|max:255',
-            'category' => 'required|string'
+            'category' => 'required|regex:/^(?=.*[a-zA-Z])[a-zA-Z0-9\s\-]+$/'
         ]);
         $product = new Product();
         $product->productnummer = $request->input('productnummer');

@@ -181,13 +181,26 @@ return [
             'regex' => 'Land mag alleen letters en bevatten.',
         ],
         'name' => [
-            'regex' => 'Naam mag alleen cijfers, letters en bevatten.',
+            'regex' => 'Naam moet minimaal 1 letter bevatten.',
         ],
         'attribute-name' => [
-            'rule-name' => 'custom-message',],
+            'rule-name' => 'custom-message',
+        ],
         'quantity' => [
-                'regex' => 'Hoeveelheid mag alleen nummers bevatten en moet beginnen met een positief cijfer.',
-            ]
+            'regex' => 'Hoeveelheid mag alleen nummers bevatten en moet beginnen met een positief cijfer.',
+        ],
+        'productnummer' => [
+            'regex' => 'productnummer moet alleen cijfers bevatten.',
+        ],
+        'category' => [
+            'regex' => 'Category moet letters bevatten en geen 1 speciale teken ook moet het niet alleen uit cijfers bestaan.'
+        ],
+        'email' => [
+            'regex' => 'Email moet minimaal 1 (@) en een (.) bevatten en het mag niet leeg staan'
+        ],
+        'functie' => [
+            'regex' => 'Funtie moet alleen uit letters bestaan en mag niet leeg zijn.'
+        ]
 
     ],
 

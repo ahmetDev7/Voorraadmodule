@@ -21,25 +21,18 @@ class WerknemerController extends Controller
     }
     public function showProducts($id)
     {
-        // Retrieve the werknemer with their products
         $werknemer = Werknemer::find($id);
 
-        // Get the werknemer's products
         $werknemerproducten = werknemer_product::where('werknemer_id', $id)->get();
 
-        // Get the serial numbers IDs associated with the werknemer's products
         $serialnumbers = $werknemerproducten->pluck('serialnumber_id');
 
-        // Get the serial number details from product_serial_numbers table
         $serialcodes = ProductSerialNumber::findMany($serialnumbers);
 
-        // Get the product IDs associated with the serial numbers
         $serialcodeProducts = $serialcodes->pluck('product_id');
 
-        // Get the products details
         $products = Product::findMany($serialcodeProducts);
 
-        // Count of products
         $tocount = $serialcodeProducts->count();
 
 
@@ -59,9 +52,9 @@ class WerknemerController extends Controller
     public function Addwerknemer(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string',
-            'functie' => 'required|string'
+            'name' => "required|regex:/^(?=.*[a-zA-Z])[a-zA-Z0-9\s\-!@#$%^&*()]+$/",
+            'email' => 'required|string|regex:/^[\w\.-]+@[\w\.-]+\.\w+$/',
+            'functie' => 'required|string|alpha',
         ]);
 
 
@@ -89,9 +82,9 @@ class WerknemerController extends Controller
     {
         $request->validate([
             'id' => 'required|int|min:1',
-            'name' => 'required|string',
-            'email' => 'required|string',
-            'functie' => 'required|string'
+            'name' => "required|regex:/^(?=.*[a-zA-Z])[a-zA-Z0-9\s\-!@#$%^&*()]+$/",
+            'email' => 'required|string|regex:/^[\w\.-]+@[\w\.-]+\.\w+$/',
+            'functie' => 'required|string|alpha',
         ]);
 
         $werknemer = Werknemer::findOrFail($request->input('id'));

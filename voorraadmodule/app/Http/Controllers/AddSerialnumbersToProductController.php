@@ -18,13 +18,25 @@ class AddSerialnumbersToProductController extends Controller
 
     public function addSerialNumbertoProduct(Request $request)
     {
+        $request->validate([
+            'serialnumber_exist' => [
+                'required',
+                'string',
+                'min:1',
+                'max:60',
+                'regex:/^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/',
+                'not_regex:/^-|-$/',
+                'not_regex:/\s/',
+            ],
+        ], [
+            'serialnumber_exist.regex' => __('validation.custom.serialnumber_exist.regex'),
+        ]);
+
         if ($request->filled('existing_product_id')) {
             // Add serial number to existing product
             $product = Product::find($request->input('existing_product_id'));
 
-            $request->validate([
-                'serialnumber_exist' => 'required',
-            ]);
+
 
             $existingSerialNumber = ProductSerialNumber::where('product_id', $product->id)
                 ->where('serialnumber', $request->input('serialnumber_exist'))
